@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECOLUD – Planète vivante</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"
+    ></script>
+  </head>
+  <body class="page-index">
+    <header class="site-header" id="siteHeader">
+      <a href="index.html" class="site-logo" aria-label="ECOLUD accueil">
+        <span aria-hidden="true">&#127793;</span>
+        ECOLUD
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="index.html#top" class="active" data-i18n="nav-home">Accueil</a>
+        <a href="#shop" data-i18n="nav-shop">Boutique</a>
+        <a href="game.html" data-i18n="nav-play">Jouer</a>
+        <a href="#experience" data-i18n="nav-experience">Expérience</a>
+        <a href="contact.html" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="nav-session" id="navSession">
+          <div class="player-badge user-info hidden" id="navPlayerBadge" aria-live="polite">
+            <img id="navPlayerAvatar" src="" alt="Avatar du joueur" />
+            <span id="navPlayerName"></span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-ghost nav-change hidden"
+            id="navChangeProfile"
+            data-change-profile
+            data-profile-target="profil.html"
+            data-profile-mode="redirect"
+            data-i18n="change-profile"
+          >
+            Changer de profil
+          </button>
+        </div>
+        <a class="btn btn-primary" id="navPlayButton" href="game.html" data-i18n="nav-play">
+          Jouer
+        </a>
+        <div class="lang-toggle" role="group" aria-label="Changer de langue">
+          <button type="button" class="active" data-lang-btn data-lang="fr">FR</button>
+          <button type="button" data-lang-btn data-lang="en">EN</button>
+          <button type="button" data-lang-btn data-lang="es">ES</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section id="hero" class="hero-with-model" data-i18n-container>
+        <div class="hero-layout">
+          <div class="hero-content">
+            <h1 class="hero-title" data-i18n="hero-title">
+              Construis ta plan&egrave;te en puzzle et joue avec un coffret unique
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero-tagline">
+              Commande le coffret ECOLUD, re&ccedil;ois un puzzle &eacute;co-con&ccedil;u et d&eacute;verrouille un univers de mini-jeux coop&eacute;ratifs pour toute la famille.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary hero-cta" href="#shop" data-i18n="hero-cta-buy">Commander le coffret</a>
+              <a class="btn btn-ghost hero-secondary" href="#experience" data-i18n="hero-cta-experience">Voir comment jouer</a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <model-viewer
+              id="planet-3d"
+              src="./smol.glb"
+              camera-controls
+              auto-rotate
+              shadow-intensity="1"
+              exposure="1"
+              environment-image="neutral"
+              alt="Mod&egrave;le 3D interactif ECOLUD"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+            ></model-viewer>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="shop">
+        <h2 data-i18n="shop-title">Choisis ton coffret &eacute;cologique</h2>
+        <p class="section-intro" data-i18n="shop-subtitle">
+          Des pi&egrave;ces magn&eacute;tiques, un livret d'aventure, une appli &agrave; scanner&nbsp;: tout est pr&ecirc;t pour jouer d&egrave;s la r&eacute;ception.
+        </p>
+        <div class="product-grid">
+          <article class="product-card">
+            <h3 data-i18n="shop-pack-solo-title">Coffret Explorer</h3>
+            <p class="product-description" data-i18n="shop-pack-solo-text">
+              1 puzzle 500 pi&egrave;ces, acc&egrave;s &agrave; l'appli ECOLUD et missions d&eacute;fis solo.
+            </p>
+            <ul class="product-features">
+              <li data-i18n="shop-pack-solo-feature1">Bois certifi&eacute; FSC et encres v&eacute;g&eacute;tales</li>
+              <li data-i18n="shop-pack-solo-feature2">Code d'activation illimit&eacute;</li>
+              <li data-i18n="shop-pack-solo-feature3">Livraison neutre en carbone</li>
+            </ul>
+            <div class="product-footer">
+              <span class="product-price" data-i18n="shop-pack-solo-price">39&nbsp;&euro;</span>
+              <a href="contact.html" class="btn btn-outline" data-i18n="shop-pack-cta">Je commande</a>
+            </div>
+          </article>
+          <article class="product-card product-card--highlight">
+            <div class="product-badge" data-i18n="shop-pack-best">Best-seller</div>
+            <h3 data-i18n="shop-pack-duo-title">Coffret Duo</h3>
+            <p class="product-description" data-i18n="shop-pack-duo-text">
+              2 puzzles 500 pi&egrave;ces, comp&eacute;titions familiales et tableau des scores partag&eacute;.
+            </p>
+            <ul class="product-features">
+              <li data-i18n="shop-pack-duo-feature1">Plateau pliable double face</li>
+              <li data-i18n="shop-pack-duo-feature2">2 comptes joueurs personnalisables</li>
+              <li data-i18n="shop-pack-duo-feature3">Acc&egrave;s aux missions coop&eacute;ratives</li>
+            </ul>
+            <div class="product-footer">
+              <span class="product-price" data-i18n="shop-pack-duo-price">69&nbsp;&euro;</span>
+              <a href="contact.html" class="btn btn-primary" data-i18n="shop-pack-cta">Je commande</a>
+            </div>
+          </article>
+          <article class="product-card">
+            <h3 data-i18n="shop-pack-school-title">Coffret Classe</h3>
+            <p class="product-description" data-i18n="shop-pack-school-text">
+              4 puzzles th&eacute;matiques, fiche p&eacute;dagogie et espace enseignant pour animer un atelier.
+            </p>
+            <ul class="product-features">
+              <li data-i18n="shop-pack-school-feature1">12 missions pr&ecirc;tes &agrave; jouer</li>
+              <li data-i18n="shop-pack-school-feature2">Tableau de bord collectif en temps r&eacute;el</li>
+              <li data-i18n="shop-pack-school-feature3">Support d&eacute;di&eacute; &eacute;ducation</li>
+            </ul>
+            <div class="product-footer">
+              <span class="product-price" data-i18n="shop-pack-school-price">159&nbsp;&euro;</span>
+              <a href="contact.html" class="btn btn-outline" data-i18n="shop-pack-cta">Je commande</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" id="experience">
+        <h2 data-i18n="experience-title">Une exp&eacute;rience puzzle &amp; jeu hybride</h2>
+        <p class="section-intro" data-i18n="experience-subtitle">
+          Trois &eacute;tapes simples pour vivre l'aventure ECOLUD &agrave; la maison ou en atelier.
+        </p>
+        <div class="experience-steps">
+          <article class="step-card">
+            <span class="step-number">1</span>
+            <h3 data-i18n="experience-step1-title">Commande ton coffret</h3>
+            <p data-i18n="experience-step1-text">
+              Choisis la formule adapt&eacute;e &agrave; ton foyer, re&ccedil;ois un coffret pr&ecirc;t &agrave; l'emploi et active ton acc&egrave;s en ligne.
+            </p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">2</span>
+            <h3 data-i18n="experience-step2-title">Assemble et scanne</h3>
+            <p data-i18n="experience-step2-text">
+              Pose le puzzle sur son plateau, scanne les zones &eacute;co-responsables et d&eacute;bloque des mini-jeux immersifs.
+            </p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">3</span>
+            <h3 data-i18n="experience-step3-title">Joue et progresse</h3>
+            <p data-i18n="experience-step3-text">
+              Rel&egrave;ve les d&eacute;fis, cumule des points et mesure ton impact sur la communaut&eacute; ECOLUD en temps r&eacute;el.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" id="included">
+        <h2 data-i18n="included-title">Ce que tu re&ccedil;ois dans la bo&icirc;te</h2>
+        <div class="included-grid">
+          <article class="included-item">
+            <h3 data-i18n="included-item1-title">Puzzle premium</h3>
+            <p data-i18n="included-item1-text">Pi&egrave;ces aimant&eacute;es, rev&ecirc;tement recycl&eacute; et visuels exclusifs.</p>
+          </article>
+          <article class="included-item">
+            <h3 data-i18n="included-item2-title">Application compagnon</h3>
+            <p data-i18n="included-item2-text">Statistiques, missions quotidiennes et tutoriels vid&eacute;o.</p>
+          </article>
+          <article class="included-item">
+            <h3 data-i18n="included-item3-title">Livret d'aventure</h3>
+            <p data-i18n="included-item3-text">Activit&eacute;s hors ligne, anecdotes &eacute;co et quiz pour petits &amp; grands.</p>
+          </article>
+          <article class="included-item">
+            <h3 data-i18n="included-item4-title">Objets &agrave; planter</h3>
+            <p data-i18n="included-item4-text">Cartes en papier ensemenc&eacute; et graines locales offertes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" id="community">
+        <h2 data-i18n="community-title">Une communaut&eacute; de joueurs engag&eacute;s</h2>
+        <p class="section-intro" data-i18n="community-subtitle">
+          Chaque coffret achet&eacute; finance la restauration d'&eacute;cosyst&egrave;mes locaux. Suis l'&eacute;nergie de la communaut&eacute; en direct.
+        </p>
+        <div class="community-grid">
+          <div class="eco-score-card" id="ecoScoreCard">
+            <h3 class="eco-score-title" data-i18n="leaders-title">Le Score &Eacute;cologique</h3>
+            <p class="eco-score-value" aria-live="polite" aria-atomic="true">
+              <span class="eco-score-label" data-i18n="eco-score-label">Tu as actuellement :</span>
+              <span class="eco-score-number" id="ecoScoreValue">0</span>
+              <span class="eco-score-unit" data-i18n="eco-score-unit">points 🌍</span>
+            </p>
+            <p class="eco-score-message" id="ecoScoreMessage">
+              Commence ton aventure &eacute;cologique en achetant ton premier puzzle ! 🌱
+            </p>
+            <p class="eco-score-participants" aria-live="polite">
+              <span class="eco-score-participants-label" data-i18n="eco-score-users-label">Utilisateurs engag&eacute;s :</span>
+              <span class="eco-score-users-count" id="ecoScoreParticipants">0</span>
+            </p>
+            <div class="eco-score-progress">
+              <div
+                class="eco-score-progress-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                aria-label="Progression vers le prochain bonus"
+                id="ecoScoreProgressBar"
+              >
+                <span class="eco-score-progress-fill" id="ecoScoreProgressFill"></span>
+              </div>
+              <p class="eco-score-progress-text" id="ecoScoreProgressText"></p>
+            </div>
+          </div>
+          <div class="impact-card">
+            <h3 data-i18n="impact-title">Impact &agrave; chaque partie</h3>
+            <ul class="impact-list">
+              <li data-i18n="impact-item1">1 coffret = 1 arbre plant&eacute; avec Reforest'Action</li>
+              <li data-i18n="impact-item2">Missions virtuelles li&eacute;es &agrave; des ONG locales</li>
+              <li data-i18n="impact-item3">Score collectif affich&eacute; dans l'application</li>
+            </ul>
+            <a href="about.html" class="btn btn-outline" data-i18n="impact-cta">Voir notre impact</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="testimonials">
+        <h2 data-i18n="testimonials-title">Ils jouent et recommandent ECOLUD</h2>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <p class="testimonial-text" data-i18n="testimonial-1-text">
+              «&nbsp;On a pass&eacute; des week-ends entiers &agrave; assembler le puzzle et &agrave; relever les challenges. Les enfants adorent voir le score grimper.&nbsp;»
+            </p>
+            <p class="testimonial-author" data-i18n="testimonial-1-author">Camille, maman de deux explorateurs</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-text" data-i18n="testimonial-2-text">
+              «&nbsp;Parfait pour lancer une s&eacute;quence sur le climat : le coffret classe facilite l'animation et motive toute la salle.&nbsp;»
+            </p>
+            <p class="testimonial-author" data-i18n="testimonial-2-author">M. Dubois, enseignant CM2</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-text" data-i18n="testimonial-3-text">
+              «&nbsp;L'appli est super accessible et l'univers est magnifique. On garde le puzzle mont&eacute; comme d&eacute;co !&nbsp;»
+            </p>
+            <p class="testimonial-author" data-i18n="testimonial-3-author">Alicia &amp; Hugo, duo de joueurs</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" id="faq">
+        <h2 data-i18n="faq-title">Foire aux questions</h2>
+        <div class="faq-accordion">
+          <article class="faq-item">
+            <h3 data-i18n="faq-1-question">Quel est le d&eacute;lai de livraison ?</h3>
+            <p data-i18n="faq-1-answer">
+              Les coffrets sont exp&eacute;di&eacute;s en 48h depuis nos ateliers lyonnais. Compte 3 &agrave; 5 jours ouvr&eacute;s selon ta r&eacute;gion.
+            </p>
+          </article>
+          <article class="faq-item">
+            <h3 data-i18n="faq-2-question">Faut-il un smartphone pour jouer ?</h3>
+            <p data-i18n="faq-2-answer">
+              Non obligatoire : l'application enrichit l'exp&eacute;rience mais le livret propose aussi des missions hors ligne.
+            </p>
+          </article>
+          <article class="faq-item">
+            <h3 data-i18n="faq-3-question">Peut-on rejouer plusieurs fois ?</h3>
+            <p data-i18n="faq-3-answer">
+              Oui, les missions se renouvellent chaque semaine et tu peux remettre le puzzle dans sa pochette magn&eacute;tique entre deux parties.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>&copy; 2025 ECOLUD - Prototype &eacute;ducatif &eacute;cologique</span>
+      <div class="footer-links">
+        <a href="contact.html" data-i18n="footer-contact">Nous contacter</a>
+        <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialit&eacute;</a>
+      </div>
+    </footer>
+
+    <div id="floating-avatar" class="hidden" aria-hidden="true">
+      <img id="avatarCompanion" src="" alt="Mascotte flottante" />
+    </div>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
+        <h1>Politique de confidentialit&eacute;</h1>
+        <p><strong>Derni&egrave;re mise &agrave; jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype &eacute;ducatif &eacute;cologique, joignable &agrave;
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Donn&eacute;es collect&eacute;es</h2>
+        <ul>
+          <li>Nom, pr&eacute;nom et avatar s&eacute;lectionn&eacute; par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d'inscription.</li>
+          <li>Donn&eacute;es d'interaction&nbsp;: progression, pr&eacute;f&eacute;rences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalit&eacute;s du traitement</h2>
+        <ul>
+          <li>Fournir une exp&eacute;rience ludique et &eacute;ducative autour de l'&eacute;cologie.</li>
+          <li>G&eacute;rer les missions collaboratives, classements et statistiques.</li>
+          <li>R&eacute;pondre aux demandes de contact et assurer le suivi p&eacute;dagogique.</li>
+          <li>Am&eacute;liorer le contenu et l'ergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases l&eacute;gales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l'ex&eacute;cution d'une mission d'int&eacute;r&ecirc;t &eacute;ducatif et le respect d'obligations l&eacute;gales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les donn&eacute;es sont h&eacute;berg&eacute;es en Union europ&eacute;enne. Aucune transmission commerciale n'est r&eacute;alis&eacute;e. Des prestataires techniques agr&eacute;&eacute;s peuvent y acc&eacute;der pour la maintenance du service.
+        </p>
+
+        <h2>6. Dur&eacute;e de conservation</h2>
+        <p>
+          Les donn&eacute;es sont conserv&eacute;es uniquement pendant la dur&eacute;e de l'inscription active ou des missions &eacute;ducatives en cours.
+        </p>
+
+        <h2>7. Droits de l'utilisateur</h2>
+        <p>
+          L'utilisateur peut &agrave; tout moment demander la suppression ou la rectification de ses donn&eacute;es via l'adresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. S&eacute;curit&eacute;</h2>
+        <p>Les donn&eacute;es sont prot&eacute;g&eacute;es par chiffrement SSL et sauvegardes s&eacute;curis&eacute;es.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative &agrave; cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="app.js" defer></script>
+    <script src="script.js" defer></script>
+    <script type="module">
+      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js';
+      import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/loaders/GLTFLoader.js';
+
+      const container = document.getElementById('planet-3d');
+      if (!container) throw new Error('Planet container not found');
+
+      const desiredHeight = 520;
+      const resolveDimensions = () => {
+        const width = container.clientWidth || window.innerWidth;
+        const height = container.clientHeight || desiredHeight;
+        return { width, height };
+      };
+      const { width: initialWidth, height: initialHeight } = resolveDimensions();
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        50,
+        initialWidth / initialHeight,
+        0.1,
+        1000
+      );
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(initialWidth, initialHeight);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.setClearColor(0x000000, 0);
+      container.appendChild(renderer.domElement);
+
+      const ambientLight = new THREE.AmbientLight(0x99ffdd, 1.25);
+      scene.add(ambientLight);
+
+      const directionalLight = new THREE.DirectionalLight(0xb3e5fc, 1.1);
+      directionalLight.position.set(1.5, 1.5, 1);
+      scene.add(directionalLight);
+
+      const secondaryLight = new THREE.PointLight(0x00c9a7, 0.9, 10);
+      secondaryLight.position.set(-2, 0.5, 2.5);
+      scene.add(secondaryLight);
+
+      const rimLight = new THREE.SpotLight(0xffffff, 0.4, 12, Math.PI / 5, 0.4, 1);
+      rimLight.position.set(0, 3, -3);
+      scene.add(rimLight);
+
+      const loader = new GLTFLoader();
+      loader.load(
+        './smol.glb',
+        (gltf) => {
+          const planet = gltf.scene;
+          planet.traverse((child) => {
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+              if (child.material && 'emissive' in child.material) {
+                child.material.emissive.multiplyScalar(0.15);
+              }
+            }
+          });
+
+          const box = new THREE.Box3().setFromObject(planet);
+          const center = box.getCenter(new THREE.Vector3());
+          const size = box.getSize(new THREE.Vector3()).length();
+
+          planet.position.sub(center);
+          planet.position.y -= 0.2;
+          planet.scale.setScalar(1.4);
+          scene.add(planet);
+
+          const distance = size / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
+          camera.position.set(0, size * 0.1, distance * 0.95);
+          camera.lookAt(0, 0, 0);
+
+          const clock = new THREE.Clock();
+
+          function animate() {
+            requestAnimationFrame(animate);
+            const delta = clock.getDelta();
+            planet.rotation.y += 0.4 * delta;
+            renderer.render(scene, camera);
+          }
+
+          animate();
+        },
+        undefined,
+        () => {
+          const fallback = document.createElement('p');
+          fallback.className = 'hero-subtitle';
+          fallback.textContent = 'La plan&egrave;te se pr&eacute;pare... Revenez dans un instant !';
+          container.appendChild(fallback);
+        }
+      );
+
+      window.addEventListener('resize', () => {
+        const { width: newWidth, height: newHeight } = resolveDimensions();
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newWidth, newHeight);
+      });
+
+      const ambience = document.getElementById('planet-audio');
+      const handleEnter = () => {
+        if (!ambience) return;
+        ambience.play().catch(() => {});
+      };
+      const handleLeave = () => {
+        if (!ambience) return;
+        ambience.pause();
+        ambience.currentTime = 0;
+      };
+
+      container.addEventListener('mouseenter', handleEnter);
+      container.addEventListener('mouseleave', handleLeave);
+      container.addEventListener('focusin', handleEnter);
+      container.addEventListener('focusout', handleLeave);
+    </script>
+  </body>
+</html>

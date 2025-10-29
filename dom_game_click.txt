@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOLUD ÔÇô Mission en cours</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  </head>
+  <body class="page-game loaded modal-open">
+    <script>
+      try {
+        localStorage.setItem(
+          'ecolud-user',
+          JSON.stringify({ name: 'Debug', avatar: 'turtle.png', progress: 12 })
+        );
+      } catch (error) {
+        console.warn('debug storage write failed', error);
+      }
+    </script>
+    <header class="site-header" id="siteHeader">
+      <a href="index.html" class="site-logo">
+        <span aria-hidden="true">­ƒî▒</span>
+        ECOLUD
+      </a>
+      <nav class="site-nav">
+        <a href="index.html" data-i18n="nav-home">Accueil</a>
+        <a href="index.html#about" data-i18n="nav-about">├Ç propos</a>
+        <a href="index.html#missions" data-i18n="nav-missions">Missions</a>
+        <a href="index.html#leaders" data-i18n="nav-leaderboard">Classement</a>
+        <a href="contact.html" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="nav-session nav-session--active" id="navSession">
+          <div class="player-badge" id="navPlayerBadge" aria-live="polite">
+            <img id="navPlayerAvatar" src="turtle.png" alt="Debug">
+            <span id="navPlayerName" title="Debug" aria-label="Debug">Debug</span>
+          </div>
+          <button type="button" class="btn btn-ghost nav-change" id="navChangeProfile" data-change-profile="" data-i18n="change-profile">Changer de profil</button>
+        </div>
+        <button type="button" class="btn btn-primary hidden" id="navPlayButton" data-play-trigger="" data-i18n="index-play">Connexion / Jouer</button>
+        <div class="lang-toggle">
+          <button type="button" class="active" data-lang-btn="" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang-btn="" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang-btn="" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a href="index.html" class="btn btn-ghost" data-i18n="nav-back">Retour accueil</a>
+      </div>
+    </header>
+
+    <main data-i18n-container="">
+      <section class="game-intro">
+        <div class="card welcome-card glass-card">
+          <img id="userAvatar" src="turtle.png" alt="Debug" class="avatar-img">
+          <h1 id="welcomeText" data-i18n="game-title-personalized">Salut <span class="username">Debug</span> ! Aide-moi ├á restaurer notre monde ­ƒîì</h1>
+          <p class="welcome-lead" data-i18n="game-subtitle">Choisis ta difficult├®, assemble les pi├¿ces et partage ton ├®nergie avec toute la communaut├® ECOLUD.</p>
+          <p class="welcome-copy">
+            Chaque puzzle termin├® rend la plan├¿te plus verte. Ensemble, faisons la diff├®rence&nbsp;!
+          </p>
+          <div class="progress-panels">
+            <div class="progress-card">
+              <strong data-i18n="progress-individual">Progression personnelle</strong>
+              <div class="progress-bar"><span id="playerProgressBar" style="width: 12%;"></span></div>
+              <small id="playerProgressLabel">12%</small>
+            </div>
+            <div class="progress-card">
+              <strong data-i18n="progress-collective">Progression collective</strong>
+              <div class="progress-bar"><span id="collectiveProgressBar" style="width: 68%"></span></div>
+              <small id="collectiveProgressLabel">68%</small>
+            </div>
+          </div>
+        </div>
+        <div class="card rewards-card glass-card">
+          <h2 data-i18n="game-rewards-title">R├®compenses ├®cologiques</h2>
+          <ul class="rewards-list">
+            <li>
+              <span class="reward-icon" aria-hidden="true">­ƒî┐</span>
+              <span data-i18n="game-reward-forest">+2&nbsp;% de verdure pour chaque puzzle termin├®</span>
+            </li>
+            <li>
+              <span class="reward-icon" aria-hidden="true">­ƒîè</span>
+              <span data-i18n="game-reward-ocean">Nettoyage des oc├®ans en temps r├®el</span>
+            </li>
+            <li>
+              <span class="reward-icon" aria-hidden="true">ÔÿÇ´©Å</span>
+              <span data-i18n="game-reward-energy">Boost lumineux pour la plan├¿te</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="puzzle-layout">
+        <article id="puzzleBoard" aria-label="Zone de puzzle">
+          <div id="levelSelection" class="level-selection-container">
+            <h2 class="level-title" data-i18n="level-title">Choisis la difficult├®</h2>
+            <div class="level-selection">
+              <button class="level-card" type="button" data-difficulty="easy" data-size="5">
+                <h3 data-i18n="level-easy">Facile</h3>
+                <p data-i18n="level-easy-text">25 pi├¿ces ÔÇô id├®al pour commencer</p>
+              </button>
+              <button class="level-card" type="button" data-difficulty="medium" data-size="6">
+                <h3 data-i18n="level-medium">Moyen</h3>
+                <p data-i18n="level-medium-text">36 pi├¿ces ÔÇô un beau d├®fi</p>
+              </button>
+              <button class="level-card" type="button" data-difficulty="hard" data-size="7">
+                <h3 data-i18n="level-hard">Difficile</h3>
+                <p data-i18n="level-hard-text">49 pi├¿ces ÔÇô pour les experts</p>
+              </button>
+            </div>
+          </div>
+
+          <div id="puzzleGame" class="puzzle-play hidden" aria-hidden="true">
+            <div class="puzzle-sidebar">
+              <h2 id="puzzleTitle" class="puzzle-heading">ECOLUD</h2>
+              <p id="puzzleStatus" class="puzzle-status" role="status" aria-live="polite"></p>
+              <img id="puzzlePreview" src="forest.jpg" alt="Aper├ºu du puzzle" class="puzzle-preview">
+              <div class="puzzle-sidebar-actions">
+                <button id="changeDifficulty" class="btn btn-ghost" type="button" data-i18n="change-level">Changer de difficult├®</button>
+              </div>
+            </div>
+            <div class="puzzle-grid-wrapper">
+              <div id="puzzleGrid" class="puzzle-grid" role="grid" aria-label="Puzzle ├á assembler"></div>
+            </div>
+          </div>
+        </article>
+
+        <div class="game-actions hidden" id="puzzleActions">
+          <button id="restartGame" class="replay-button" type="button" data-i18n="restart">Rejouer</button>
+        </div>
+      </section>
+    </main>
+
+    <aside id="floating-avatar" class="hidden" aria-hidden="true">
+      <img id="avatarCompanion" src="turtle.png" alt="Mascotte flottante">
+    </aside>
+
+    <footer class="page-footer">
+      <span>┬® 2025 ECOLUD ÔÇô Prototype ├®ducatif ├®cologique</span>
+      <div class="footer-links">
+        <a href="contact.html" data-i18n="footer-contact">Nous contacter</a>
+        <a href="#" data-privacy-trigger="" data-i18n="footer-privacy" aria-haspopup="dialog" aria-controls="privacy-modal">Politique de confidentialit├®</a>
+      </div>
+    </footer>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document" tabindex="-1">
+        <button type="button" id="close-privacy" aria-label="Fermer">├ù</button>
+        <h1>Politique de confidentialit├®</h1>
+        <p><strong>Derni├¿re mise ├á jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype ├®ducatif ├®cologique, joignable ├á
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Donn├®es collect├®es</h2>
+        <ul>
+          <li>Nom, pr├®nom et avatar s├®lectionn├® par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou dÔÇÖinscription.</li>
+          <li>Donn├®es dÔÇÖinteraction&nbsp;: progression, pr├®f├®rences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalit├®s du traitement</h2>
+        <ul>
+          <li>Fournir une exp├®rience ludique et ├®ducative autour de lÔÇÖ├®cologie.</li>
+          <li>G├®rer les missions collaboratives, classements et statistiques.</li>
+          <li>R├®pondre aux demandes de contact et assurer le suivi p├®dagogique.</li>
+          <li>Am├®liorer le contenu et lÔÇÖergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases l├®gales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l'ex├®cution d'une mission d'int├®r├¬t
+          ├®ducatif et le respect d'obligations l├®gales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les donn├®es sont h├®berg├®es en Union europ├®enne. Aucune transmission commerciale n'est r├®alis├®e.
+          Des prestataires techniques agr├®├®s peuvent y acc├®der pour la maintenance du service.
+        </p>
+
+        <h2>6. Dur├®e de conservation</h2>
+        <p>
+          Les donn├®es sont conserv├®es uniquement pendant la dur├®e de lÔÇÖinscription active ou des missions
+          ├®ducatives en cours.
+        </p>
+
+        <h2>7. Droits de lÔÇÖutilisateur</h2>
+        <p>
+          LÔÇÖutilisateur peut ├á tout moment demander la suppression ou la rectification de ses donn├®es via lÔÇÖadresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. S├®curit├®</h2>
+        <p>Les donn├®es sont prot├®g├®es par chiffrement SSL et sauvegardes s├®curis├®es.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative ├á cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="modal" id="profileResetModal" aria-hidden="false" role="dialog" aria-modal="true">
+      <div class="modal-dialog modal-dialog--confirm">
+        <h2>R├®initialiser ton profil&nbsp;?</h2>
+        <p>
+          Tu devras de nouveau choisir ton avatar et ton pr├®nom pour continuer ton aventure ECOLUD.
+        </p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="cancelProfileReset">Annuler</button>
+          <button type="button" class="btn btn-primary" id="confirmProfileReset" data-primary="true">Confirmer</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js" defer=""></script>
+    <script src="script.js" defer=""></script>
+    <script src="game.js" defer=""></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          document.getElementById('navChangeProfile')?.click();
+          const modal = document.getElementById('profileResetModal');
+          console.log('modal after click', modal?.className);
+        }, 1500);
+      });
+    </script>
+  
+
+</body></html>

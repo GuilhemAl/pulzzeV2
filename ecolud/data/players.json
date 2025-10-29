@@ -1,0 +1,157 @@
+{
+  "global_progress": 0.57,
+  "players": [
+    {
+      "id": "p1",
+      "name": "Najlaa",
+      "avatar": "turtle.png",
+      "team": "turtles",
+      "lat": 34.0209,
+      "lng": -6.8416,
+      "points": 42
+    },
+    {
+      "id": "p2",
+      "name": "Kenza",
+      "avatar": "sun.png",
+      "team": "suns",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "points": 38
+    },
+    {
+      "id": "p3",
+      "name": "Imane",
+      "avatar": "drop.png",
+      "team": "drops",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "points": 45
+    },
+    {
+      "id": "p4",
+      "name": "Lina",
+      "avatar": "bird.png",
+      "team": "drops",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "points": 34
+    },
+    {
+      "id": "p5",
+      "name": "Adam",
+      "avatar": "squirrel.png",
+      "team": "turtles",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "points": 27
+    }
+  ],
+  "teams": {
+    "turtles": {
+      "name": "Les Tortues",
+      "icon": "\ud83d\udc22",
+      "color": "#2f9e44",
+      "progress": 62
+    },
+    "suns": {
+      "name": "Les Soleils",
+      "icon": "\u2600\ufe0f",
+      "color": "#f59f00",
+      "progress": 54
+    },
+    "drops": {
+      "name": "Les Gouttes",
+      "icon": "\ud83d\udca7",
+      "color": "#228be6",
+      "progress": 49
+    }
+  },
+  "stats": {
+    "missions_today": 124,
+    "co2_saved": 318,
+    "active_players": 27,
+    "team_leaderboard": [
+      {
+        "team": "turtles",
+        "points": 169
+      },
+      {
+        "team": "suns",
+        "points": 152
+      },
+      {
+        "team": "drops",
+        "points": 143
+      }
+    ],
+    "player_leaderboard": [
+      {
+        "name": "Imane",
+        "avatar": "drop.png",
+        "team": "drops",
+        "points": 45
+      },
+      {
+        "name": "Najlaa",
+        "avatar": "turtle.png",
+        "team": "turtles",
+        "points": 42
+      },
+      {
+        "name": "Kenza",
+        "avatar": "sun.png",
+        "team": "suns",
+        "points": 38
+      },
+      {
+        "name": "Lina",
+        "avatar": "bird.png",
+        "team": "drops",
+        "points": 34
+      },
+      {
+        "name": "Adam",
+        "avatar": "squirrel.png",
+        "team": "turtles",
+        "points": 27
+      }
+    ],
+    "avatar_usage": [
+      {
+        "avatar": "turtle.png",
+        "count": 12
+      },
+      {
+        "avatar": "sun.png",
+        "count": 10
+      },
+      {
+        "avatar": "drop.png",
+        "count": 9
+      },
+      {
+        "avatar": "bird.png",
+        "count": 6
+      },
+      {
+        "avatar": "squirrel.png",
+        "count": 5
+      }
+    ],
+    "live_feed": [
+      {
+        "message": "Najlaa a nettoy\u00e9 2 plages \ud83c\udfd6\ufe0f (+5 points pour Les Tortues)",
+        "ts": 1700000000
+      },
+      {
+        "message": "Kenza a plant\u00e9 un arbre \ud83c\udf33 (+3 points pour Les Soleils)",
+        "ts": 1700000001
+      },
+      {
+        "message": "Imane a organis\u00e9 un tri s\u00e9lectif \u267b\ufe0f (+4 points pour Les Gouttes)",
+        "ts": 1700000002
+      }
+    ]
+  }
+}

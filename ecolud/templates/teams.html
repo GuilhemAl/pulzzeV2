@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOLUD – Mode coopération</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body class="teams-page">
+    <header class="top-bar fade-in">
+      <span class="badge">Mode coopération</span>
+      <h1>Unissons nos forces écologiques</h1>
+    </header>
+
+    <main class="layout layout--teams">
+      <section class="team-grid" id="team-grid">
+        <!-- Cartes d'équipes injectées par JS -->
+      </section>
+      <aside class="panel panel--feed">
+        <h2>Live feed</h2>
+        <ul id="team-feed" class="feed-list"></ul>
+      </aside>
+    </main>
+
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/teams.js') }}"></script>
+  </body>
+</html>

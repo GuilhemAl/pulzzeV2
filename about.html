@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOLUD - &Agrave; propos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/style_about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="app.js" defer></script>
+  </head>
+  <body class="about-page">
+    <div class="sky" aria-hidden="true">
+      <div class="clouds layer-front"></div>
+      <div class="clouds layer-back"></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+      <a href="index.html" class="site-logo">
+        <span aria-hidden="true">&#127793;</span>
+        ECOLUD
+      </a>
+      <nav class="site-nav">
+        <a href="index.html" data-i18n="nav-home">Accueil</a>
+        <a href="about.html" class="active" data-i18n="nav-about">&Agrave; propos</a>
+        <a href="index.html#missions" data-i18n="nav-missions">Missions</a>
+        <a href="index.html#leaders" data-i18n="nav-leaderboard">Classement</a>
+        <a href="contact.html" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="nav-session" id="navSession">
+          <div class="player-badge user-info hidden" id="navPlayerBadge" aria-live="polite">
+            <img id="navPlayerAvatar" src="" alt="Avatar du joueur" />
+            <span id="navPlayerName"></span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-ghost nav-change hidden"
+            id="navChangeProfile"
+            data-change-profile
+            data-i18n="change-profile"
+          >
+            Changer de profil
+          </button>
+        </div>
+        <button type="button" class="btn btn-primary" id="navPlayButton" data-play-trigger data-i18n="index-play">
+          Connexion / Jouer
+        </button>
+        <div class="lang-toggle">
+          <button type="button" class="active" data-lang-btn data-lang="fr">FR</button>
+          <button type="button" data-lang-btn data-lang="en">EN</button>
+          <button type="button" data-lang-btn data-lang="es">ES</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="game-container fade-in-up" data-i18n-container>
+      <section class="hero">
+        <h1 data-i18n="about-hero-title">Choisis ton aventure <span>&eacute;cologique</span> &#127793;</h1>
+        <p data-i18n="about-hero-text">
+          Explore nos puzzles interactifs pour prot&eacute;ger la plan&egrave;te, apprendre en t'amusant et embarquer dans des missions naturelles pleines de secrets.
+        </p>
+      </section>
+
+      <section class="progress">
+        <div class="progress-header">
+          <h2 data-i18n="about-progress-title">Progression de ta mission</h2>
+          <span class="progress-text" id="progress-text">0% compl&eacute;t&eacute;</span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+      </section>
+
+      <section class="tiko-section">
+        <div class="tiko-avatar">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Turtle_icon.svg" alt="Tiko la Tortue" />
+        </div>
+        <div class="tiko-dialog" data-i18n="about-tiko-dialog">
+          Salut, je suis Tiko &#128034;&nbsp;!
+          <br>
+          Aide-moi &agrave; reconstruire mon monde &#127757;
+        </div>
+      </section>
+
+      <section class="mission">
+        <h2 data-i18n="about-mission-title">Mission du joueur</h2>
+        <div class="mission-card">
+          <span class="mission-icon" aria-hidden="true">&#129513;</span>
+          <p data-i18n="about-mission-text">
+            Assemble les 10 pi&egrave;ces pour r&eacute;v&eacute;ler l'image magique&nbsp;! Chaque puzzle termin&eacute; prot&egrave;ge un &eacute;cosyst&egrave;me et te rapproche de la victoire.
+          </p>
+        </div>
+      </section>
+
+      <section class="puzzle-area">
+        <h2 data-i18n="about-puzzle-title">Zone de puzzle</h2>
+        <div class="puzzle-board" id="puzzle-board">
+          <div class="puzzle-piece float-delay-1"></div>
+          <div class="puzzle-piece float-delay-2"></div>
+          <div class="puzzle-piece float-delay-3"></div>
+          <div class="puzzle-piece float-delay-4"></div>
+          <div class="puzzle-piece float-delay-5"></div>
+          <div class="puzzle-piece float-delay-6"></div>
+          <div class="puzzle-piece float-delay-7"></div>
+          <div class="puzzle-piece float-delay-8"></div>
+          <div class="puzzle-piece float-delay-9"></div>
+          <div class="puzzle-piece float-delay-10"></div>
+        </div>
+      </section>
+
+      <section class="victory hidden" id="victory">
+        <div class="victory-card">
+          <h2 data-i18n="about-victory-title">&#127881; Bravo explorateur&nbsp;!</h2>
+          <p data-i18n="about-victory-text">Tu as aid&eacute; Tiko &agrave; prot&eacute;ger la plan&egrave;te &#127760;</p>
+          <button type="button" class="replay-btn" id="replay-btn" data-i18n="about-replay">Rejouer &#128257;</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="about-footer">
+      <span aria-hidden="true">&#127793;</span>
+      &copy; 2025 ECOLUD – Prototype &eacute;ducatif &eacute;cologique
+      <a href="#" data-privacy-trigger>Politique de confidentialit&eacute;</a>
+    </footer>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
+        <h1>Politique de confidentialit&eacute;</h1>
+        <p><strong>Derni&egrave;re mise &agrave; jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype &eacute;ducatif &eacute;cologique, joignable &agrave;
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Donn&eacute;es collect&eacute;es</h2>
+        <ul>
+          <li>Nom, pr&eacute;nom et avatar s&eacute;lectionn&eacute; par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d’inscription.</li>
+          <li>Donn&eacute;es d’interaction&nbsp;: progression, pr&eacute;f&eacute;rences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalit&eacute;s du traitement</h2>
+        <ul>
+          <li>Fournir une exp&eacute;rience ludique et &eacute;ducative autour de l’&eacute;cologie.</li>
+          <li>G&eacute;rer les missions collaboratives, classements et statistiques.</li>
+          <li>R&eacute;pondre aux demandes de contact et assurer le suivi p&eacute;dagogique.</li>
+          <li>Am&eacute;liorer le contenu et l’ergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases l&eacute;gales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l'ex&eacute;cution d'une mission d'int&eacute;r&ecirc;t
+          &eacute;ducatif et le respect d'obligations l&eacute;gales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les donn&eacute;es sont h&eacute;berg&eacute;es en Union europ&eacute;enne. Aucune transmission commerciale n'est r&eacute;alis&eacute;e.
+          Des prestataires techniques agr&eacute;&eacute;s peuvent y acc&eacute;der pour la maintenance du service.
+        </p>
+
+        <h2>6. Dur&eacute;e de conservation</h2>
+        <p>
+          Les donn&eacute;es sont conserv&eacute;es uniquement pendant la dur&eacute;e de l’inscription active ou des missions
+          &eacute;ducatives en cours.
+        </p>
+
+        <h2>7. Droits de l’utilisateur</h2>
+        <p>
+          L’utilisateur peut &agrave; tout moment demander la suppression ou la rectification de ses donn&eacute;es via l’adresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. S&eacute;curit&eacute;</h2>
+        <p>Les donn&eacute;es sont prot&eacute;g&eacute;es par chiffrement SSL et sauvegardes s&eacute;curis&eacute;es.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative &agrave; cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const victorySection = document.getElementById('victory');
+        const replayBtn = document.getElementById('replay-btn');
+        const pieces = Array.from(document.querySelectorAll('.puzzle-piece'));
+
+        let progress = 0;
+
+        const formatProgress = () => {
+          if (typeof window.translate === 'function') {
+            progressText.textContent = window.translate('about-progress-status', { value: progress });
+          } else if (progress === 0) {
+            return;
+          } else {
+            progressText.textContent = progress + '%';
+          }
+        };
+
+        formatProgress();
+
+        const setVictoryVisible = (show) => {
+          if (!victorySection) return;
+          victorySection.classList.toggle('hidden', !show);
+          victorySection.classList.toggle('show', show);
+        };
+
+        const handlePieceClick = (piece) => {
+          if (piece.classList.contains('placed')) return;
+          piece.classList.add('placed');
+          piece.style.transform = 'scale(1.02)';
+          piece.style.boxShadow = '0 16px 30px rgba(0, 201, 167, 0.25)';
+          progress = Math.min(progress + 10, 100);
+          progressBar.style.width = progress + '%';
+          formatProgress();
+          if (progress === 100) {
+            setTimeout(() => setVictoryVisible(true), 400);
+          }
+        };
+
+        pieces.forEach((piece) => {
+          piece.addEventListener('click', () => handlePieceClick(piece));
+        });
+
+        if (replayBtn) {
+          replayBtn.addEventListener('click', () => {
+            progress = 0;
+            progressBar.style.width = '0%';
+            pieces.forEach((piece) => {
+              piece.classList.remove('placed');
+              piece.style.transform = '';
+              piece.style.boxShadow = '';
+            });
+            setVictoryVisible(false);
+            formatProgress();
+          });
+        }
+
+        document.addEventListener('ecolud:language-change', formatProgress);
+      })();
+    </script>
+
+    <div id="floating-avatar" class="hidden" aria-hidden="true">
+      <img id="avatarCompanion" src="" alt="Mascotte flottante" />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOLUD – Carte collaborative</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body class="collab-page">
+    <header class="top-bar fade-in">
+      <span class="badge">Carte mondiale collaborative</span>
+      <h1>Nettoyer la planète ensemble</h1>
+      <div class="global-progress">
+        <span id="global-progress-label">87% complété 🌎💚</span>
+        <div class="progress-bar">
+          <div class="progress-bar__value" id="global-progress-bar"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout layout--map">
+      <section class="panel panel--map">
+        <div id="world-map"></div>
+      </section>
+      <aside class="panel panel--feed">
+        <h2>Live feed</h2>
+        <ul id="live-feed" class="feed-list"></ul>
+      </aside>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script>
+      window.ECOLUD_STATE = {{ url_for('api_state')|tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+  </body>
+</html>
