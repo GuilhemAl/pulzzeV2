@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECOLUD – Contact</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page-contact">
+    <header class="site-header" id="siteHeader">
+      <a href="../index.html" class="site-logo" aria-label="ECOLUD accueil">
+        <span aria-hidden="true">&#127793;</span>
+        ECOLUD
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="../index.html#top" data-i18n="nav-home">Accueil</a>
+        <a href="../index.html#shop" data-i18n="nav-shop">Boutique</a>
+        <a href="game.html" data-play-trigger data-i18n="nav-play">Jouer</a>
+        <a href="../index.html#experience" data-i18n="nav-experience">Exp&eacute;rience</a>
+        <a href="contact.html" class="active" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="nav-session" id="navSession">
+          <div class="player-badge user-info hidden" id="navPlayerBadge" aria-live="polite">
+            <img id="navPlayerAvatar" src="" alt="Avatar du joueur" />
+            <span id="navPlayerName"></span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-ghost nav-change hidden"
+            id="navChangeProfile"
+            data-change-profile
+            data-profile-target="pages/choose.html"
+            data-profile-mode="redirect"
+            data-i18n="change-profile"
+          >
+            Changer de profil
+          </button>
+        </div>
+        <div class="lang-toggle" role="group" aria-label="Changer de langue">
+          <button type="button" class="active" data-lang-btn data-lang="fr">FR</button>
+          <button type="button" data-lang-btn data-lang="en">EN</button>
+          <button type="button" data-lang-btn data-lang="es">ES</button>
+        </div>
+      </div>
+    </header>
+
+    <main data-i18n-container>
+      <section class="contact-hero">
+        <h1 data-i18n="contact-title">Contactez-nous &#128154;</h1>
+        <p data-i18n="contact-subtitle">
+          Une id&eacute;e, un partenariat ou une question&nbsp;? L'&eacute;quipe ECOLUD vous r&eacute;pond avec
+          plaisir.
+        </p>
+      </section>
+
+      <section class="contact-grid">
+        <form class="contact-form" id="contact-form" data-contact-form>
+          <div class="form-group">
+            <label for="name" data-i18n="contact-name-label">Nom complet</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Votre nom et pr&eacute;nom"
+              data-i18n-placeholder="contact-name-placeholder"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email" data-i18n="contact-email-label">Adresse e-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="exemple@ecolud.org"
+              data-i18n-placeholder="contact-email-placeholder"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="subject" data-i18n="contact-subject-label">Objet</label>
+            <select id="subject" name="subject" required>
+              <option value="" disabled selected data-i18n="contact-subject-default">Choisissez une option</option>
+              <option value="partnership" data-i18n="contact-subject-partnership">Partenariat</option>
+              <option value="feedback" data-i18n="contact-subject-feedback">Feedback</option>
+              <option value="other" data-i18n="contact-subject-other">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="contact-message-label">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Dites-nous tout..."
+              data-i18n-placeholder="contact-message-placeholder"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" data-i18n="contact-submit">
+            Envoyer mon message &#127807;
+          </button>
+          <p class="form-success" id="form-success" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="contact-info">
+          <h2 data-i18n="contact-direct-title">Contact direct</h2>
+          <p data-i18n="contact-direct-text">
+            &Eacute;crivez-nous &agrave; <a href="mailto:contact@ecolud.org">contact@ecolud.org</a><br />
+            Nous r&eacute;pondons sous 48&nbsp;h.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram"><span aria-hidden="true">&#127759;</span> Instagram</a>
+            <a href="#" aria-label="Twitter"><span aria-hidden="true">&#128038;</span> Twitter</a>
+            <a href="#" aria-label="LinkedIn"><span aria-hidden="true">&#128187;</span> LinkedIn</a>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>&copy; 2025 ECOLUD – Prototype &eacute;ducatif &eacute;cologique</span>
+      <div class="footer-links">
+        <a href="../index.html#missions" data-i18n="footer-missions">Voir les missions</a>
+        <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialit&eacute;</a>
+      </div>
+    </footer>
+
+    <div id="floating-avatar" class="hidden" aria-hidden="true">
+      <img id="avatarCompanion" src="" alt="Mascotte flottante" />
+    </div>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
+        <h1>Politique de confidentialit&eacute;</h1>
+        <p><strong>Derni&egrave;re mise &agrave; jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype &eacute;ducatif &eacute;cologique, joignable &agrave;
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Donn&eacute;es collect&eacute;es</h2>
+        <ul>
+          <li>Nom, pr&eacute;nom et avatar s&eacute;lectionn&eacute; par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d’inscription.</li>
+          <li>Donn&eacute;es d’interaction&nbsp;: progression, pr&eacute;f&eacute;rences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalit&eacute;s du traitement</h2>
+        <ul>
+          <li>Fournir une exp&eacute;rience ludique et &eacute;ducative autour de l’&eacute;cologie.</li>
+          <li>G&eacute;rer les missions collaboratives, classements et statistiques.</li>
+          <li>R&eacute;pondre aux demandes de contact et assurer le suivi p&eacute;dagogique.</li>
+          <li>Am&eacute;liorer le contenu et l’ergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases l&eacute;gales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l'ex&eacute;cution d'une mission d'int&eacute;r&ecirc;t
+          &eacute;ducatif et le respect d'obligations l&eacute;gales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les donn&eacute;es sont h&eacute;berg&eacute;es en Union europ&eacute;enne. Aucune transmission commerciale n'est r&eacute;alis&eacute;e.
+          Des prestataires techniques agr&eacute;&eacute;s peuvent y acc&eacute;der pour la maintenance du service.
+        </p>
+
+        <h2>6. Dur&eacute;e de conservation</h2>
+        <p>
+          Les donn&eacute;es sont conserv&eacute;es uniquement pendant la dur&eacute;e de l’inscription active ou des missions
+          &eacute;ducatives en cours.
+        </p>
+
+        <h2>7. Droits de l’utilisateur</h2>
+        <p>
+          L’utilisateur peut &agrave; tout moment demander la suppression ou la rectification de ses donn&eacute;es via l’adresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. S&eacute;curit&eacute;</h2>
+        <p>Les donn&eacute;es sont prot&eacute;g&eacute;es par chiffrement SSL et sauvegardes s&eacute;curis&eacute;es.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative &agrave; cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="../assets/js/app.js" defer></script>
+  </body>
+</html>
+
+
+
