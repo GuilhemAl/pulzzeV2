@@ -77,7 +77,7 @@ img {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  padding: clamp(5rem, 9vw, 7rem) clamp(1.5rem, 5vw, 3.5rem);
+  padding: clamp(3rem, 4vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
   text-align: center;
   color: #1f3b32;
   overflow: hidden;
@@ -713,7 +713,7 @@ button:not(.btn):hover {
 }
 
 .page-index main {
-  padding-top: 110px;
+  padding-top: 80px;
 }
 
 .content-section {
@@ -1129,13 +1129,13 @@ button:not(.btn):hover {
 /* Game page */
 
 .page-game {
-  padding-top: 110px;
+  padding-top: 80px;
 }
 
 .game-hero {
   display: grid;
   gap: 2rem;
-  padding: 4rem 6vw 2rem;
+  padding: 3rem 6vw 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   align-items: center;
 }
@@ -1353,11 +1353,11 @@ button:not(.btn):hover {
 /* Contact page */
 
 .page-contact {
-  padding-top: 110px;
+  padding-top: 80px;
 }
 
 .contact-hero {
-  padding: 4rem 6vw 2rem;
+  padding: 1.5rem 6vw 1.5rem;
   display: grid;
   gap: 1.6rem;
 }
