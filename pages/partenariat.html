@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECOLUD – Partenaires</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/game.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .page-partenariat main {
+        padding-top: 88px;
+        display: grid;
+        gap: 4rem;
+      }
+      .page-partenariat .partner-hero {
+        padding: 4rem 6vw 0;
+        display: grid;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .page-partenariat .partner-hero p {
+        margin: 0 auto;
+        max-width: 640px;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+      .page-partenariat .partner-grid {
+        padding: 0 6vw;
+        display: grid;
+        gap: 2rem;
+      }
+      .page-partenariat .partner-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.8rem;
+      }
+      .page-partenariat .partner-card h3 {
+        margin: 0 0 0.6rem;
+        color: var(--primary-dark);
+      }
+      .page-partenariat .partner-card p {
+        margin: 0;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+      .page-partenariat .partner-access {
+        padding: 0 6vw 4rem;
+        display: grid;
+        justify-items: center;
+      }
+      .page-partenariat .partner-access form {
+        max-width: 440px;
+        width: 100%;
+      }
+      .page-partenariat .partner-access .form-note {
+        margin-top: 1rem;
+        text-align: center;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body class="page-partenariat">
+    <header class="site-header" id="siteHeader">
+      <a href="../index.html" class="site-logo" aria-label="ECOLUD accueil">
+        <span aria-hidden="true">&#127793;</span>
+        ECOLUD
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="../index.html#top" data-i18n="nav-home">Accueil</a>
+        <a href="../index.html#shop" data-i18n="nav-shop">Boutique</a>
+        <a href="game.html" data-i18n="nav-play">Jouer</a>
+        <!-- <a href="../index.html#experience" data-i18n="nav-experience">Expérience</a> -->
+        <a href="login.html" data-i18n="nav-partner" id="navPartnerLink">Partenaire</a>
+        <a href="contact.html" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="nav-session" id="navSession">
+          <div class="player-badge user-info hidden" id="navPlayerBadge" aria-live="polite">
+            <img id="navPlayerAvatar" src="" alt="Avatar du joueur" />
+            <span id="navPlayerName"></span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-ghost nav-change hidden"
+            id="navChangeProfile"
+            data-change-profile
+            data-profile-target="pages/choose.html"
+            data-profile-mode="reset"
+            data-i18n="change-profile"
+          >
+            Changer de profil
+          </button>
+        </div>
+        <div class="partner-actions hidden" id="partnerActions">
+          <a href="prototypes.html" class="btn btn-ghost" id="partnerSpaceLink" data-i18n="partner-space">
+            Mon espace
+          </a>
+          <button type="button" class="btn btn-ghost" id="partnerLogoutBtn" data-i18n="partner-logout">
+            Déconnexion
+          </button>
+        </div>
+        <div class="lang-toggle" role="group" aria-label="Changer de langue">
+          <button type="button" class="active" data-lang-btn data-lang="fr">FR</button>
+          <button type="button" data-lang-btn data-lang="en">EN</button>
+          <button type="button" data-lang-btn data-lang="es">ES</button>
+        </div>
+      </div>
+    </header>
+
+    <main data-i18n-container>
+      <section class="partner-hero">
+        <h1>Partenaires ECOLUD</h1>
+        <p>
+          Découvrez notre réseau de partenaires engagés pour une pédagogie éco-responsable. Ensemble, nous
+          co-créons des expériences ludiques qui reconnectent les joueurs à l’océan et à la planète.
+        </p>
+      </section>
+
+      <section class="partner-grid">
+        <h2>Réseau &amp; collaborations</h2>
+        <div class="partner-cards">
+          <article class="feature-card glass-card partner-card">
+            <h3>BlueWave Labs</h3>
+            <p>
+              Prototype la visualisation des récifs restaurés et anime des ateliers pédagogiques pour les classes
+              partenaires.
+            </p>
+          </article>
+          <article class="feature-card glass-card partner-card">
+            <h3>EcoDesign Studio</h3>
+            <p>
+              Conçoit les pièces magnétiques écologiques et garantit une production responsable sur l’ensemble du
+              cycle produit.
+            </p>
+          </article>
+          <article class="feature-card glass-card partner-card">
+            <h3>WaveMakers</h3>
+            <p>
+              Déploie les missions collaboratives avec les associations locales et collecte les indicateurs
+              d’impact.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="partner-access">
+        <h2>Espace partenaire</h2>
+        <form class="contact-form partner-login">
+          <div class="form-group">
+            <label for="partner-email">Adresse e-mail</label>
+            <input
+              type="email"
+              id="partner-email"
+              name="partner-email"
+              placeholder="votre.email@partenaire.org"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="partner-password">Mot de passe</label>
+            <input
+              type="password"
+              id="partner-password"
+              name="partner-password"
+              placeholder="Mot de passe"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Connexion partenaire</button>
+          <p class="form-note">Besoin d’un accès ? Contactez votre référent ECOLUD.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>&copy; 2025 ECOLUD – Prototype éducatif écologique</span>
+      <div class="footer-links">
+        <a href="../index.html#missions" data-i18n="footer-missions">Voir les missions</a>
+        <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialité</a>
+      </div>
+    </footer>
+
+    <div id="floating-avatar" class="hidden" aria-hidden="true">
+      <img id="avatarCompanion" src="../assets/images/avatars/turtle.png" alt="Mascotte flottante" />
+    </div>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
+        <h1>Politique de confidentialité</h1>
+        <p><strong>Dernière mise à jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype éducatif écologique, joignable à
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Données collectées</h2>
+        <ul>
+          <li>Nom, prénom et avatar sélectionné par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d’inscription.</li>
+          <li>Données d’interaction&nbsp;: progression, préférences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalités du traitement</h2>
+        <ul>
+          <li>Fournir une expérience ludique et éducative autour de l’écologie.</li>
+          <li>Gérer les missions collaboratives, classements et statistiques.</li>
+          <li>Répondre aux demandes de contact et assurer le suivi pédagogique.</li>
+          <li>Améliorer le contenu et l’ergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases légales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l’exécution d'une mission d’intérêt
+          éducatif et le respect d'obligations légales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les données sont hébergées en Union européenne. Aucune transmission commerciale n'est réalisée.
+          Des prestataires techniques agréés peuvent y accéder pour la maintenance du service.
+        </p>
+
+        <h2>6. Durée de conservation</h2>
+        <p>
+          Les données sont conservées uniquement pendant la durée de l’inscription active ou des missions
+          éducatives en cours.
+        </p>
+
+        <h2>7. Droits de l’utilisateur</h2>
+        <p>
+          L’utilisateur peut à tout moment demander la suppression ou la rectification de ses données via l’adresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. Sécurité</h2>
+        <p>Les données sont protégées par chiffrement SSL et sauvegardes sécurisées.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative à cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/app.js" defer></script>
+  </body>
+</html>

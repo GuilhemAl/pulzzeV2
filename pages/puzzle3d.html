@@ -41,23 +41,26 @@ body.page-puzzle3d {
       width: 100%;
       max-width: 1200px;
       height: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) clamp(260px, 28vw, 340px);
+      grid-template-rows: minmax(0, 1fr) auto;
+      align-items: stretch;
+      justify-items: center;
       gap: clamp(12px, 2vw, 24px);
       min-height: 0;
     }
     .puzzle-stage {
       position: relative;
-      flex: 1 1 460px;
+      grid-column: 1;
+      grid-row: 1;
+      width: 100%;
       height: 100%;
       max-height: 680px;
       aspect-ratio: 3 / 4;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: clamp(12px, 2vh, 28px) auto;
+      margin: 0;
       min-height: 0;
     }
     #app {
@@ -70,14 +73,16 @@ body.page-puzzle3d {
       min-height: 0;
     }
     .puzzle3d-sidebar {
-      flex: 0 1 clamp(260px, 28vw, 340px);
-      max-height: 100%;
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      height: 100%;
       overflow-y: auto;
       padding: clamp(18px, 3vw, 28px);
       border-radius: 28px;
       background: rgba(255, 255, 255, 0.82);
       box-shadow: 0 30px 60px rgba(12, 60, 90, 0.18);
       backdrop-filter: blur(12px);
+      min-width: clamp(260px, 28vw, 340px);
     }
     .puzzle-frame {
       position: relative;
@@ -111,60 +116,34 @@ body.page-puzzle3d {
       border-radius: 28px;
       box-shadow: inset 0 0 26px rgba(0, 0, 0, 0.55);
     }
-    .hud {
-      position: absolute;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      background: rgba(10, 25, 43, 0.76);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 10px 14px;
-      border-radius: 999px;
-      backdrop-filter: blur(14px);
-      font-size: 13px;
-      line-height: 1.4;
+    .puzzle-controls {
+      grid-column: 1;
+      grid-row: 2;
+      width: 100%;
       display: flex;
-      gap: 10px;
-      align-items: center;
-      color: #f0f6fb;
-      box-shadow: 0 14px 40px rgba(5, 20, 40, 0.35);
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .hud .btn {
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(38, 98, 157, 0.95);
-      color: #ffffff;
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .hud .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(15, 76, 129, 0.35);
-    }
-    .hud label {
-      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      color: #f0f6fb;
-      font-weight: 500;
+      gap: clamp(12px, 3vw, 20px);
+      margin-top: clamp(12px, 2vh, 24px);
     }
-    .hud input[type='checkbox'] {
-      width: 18px;
-      height: 18px;
-      accent-color: #00c4af;
+    .fullscreen-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .puzzle-stage.is-fullscreen {
+      width: 100%;
+      max-height: none;
+      margin: 0;
+    }
+    .puzzle-stage.is-fullscreen .puzzle-frame {
+      border-radius: 0;
+      max-width: none;
+      max-height: none;
+    }
+    .puzzle-stage.is-fullscreen canvas {
+      border-radius: 0;
     }
     .status-overlay {
       position: absolute;
@@ -307,19 +286,17 @@ body.page-puzzle3d {
   <main class="puzzle3d-main" data-i18n-container>
     <section class="puzzle3d-shell">
       <div class="puzzle-stage">
-        <div class="hud">
-          <div class="badge">Difficulte: <span id="difficultyLabel">Moyen</span></div>
-          <div class="badge" id="groupInfo">Bloc: 1 piece</div>
-          <div class="badge" id="placedInfo">0 placees</div>
-          <label>
-            <input type="checkbox" id="lockAfterMerge" checked /> Verrouiller blocs assembles
-          </label>
-          <button class="btn" id="resetBtn">Reinitialiser</button>
-        </div>
         <div id="app">
           <div class="puzzle-frame" id="puzzleFrame"></div>
         </div>
         <div id="statusOverlay" class="status-overlay">Chargement du puzzle 3D...</div>
+      </div>
+      <div class="puzzle-controls">
+        <button class="btn btn-secondary" id="resetBtn">Réinitialiser</button>
+        <div class="fullscreen-controls">
+          <button class="btn btn-primary" id="enterFullscreenBtn">Agrandir</button>
+          <button class="btn btn-ghost hidden" id="exitFullscreenBtn">Réduire</button>
+        </div>
       </div>
       <aside class="puzzle3d-sidebar">
         <h2>Protect the Oceans</h2>
@@ -329,8 +306,8 @@ body.page-puzzle3d {
         </p>
         <ul>
           <li>Fais glisser les pi&egrave;ces pour les positionner et les aimanter &agrave; leurs voisines.</li>
-          <li>Active le verrouillage pour souder d&eacute;finitivement les blocs assembl&eacute;s.</li>
-          <li>Le bouton &laquo;&nbsp;R&eacute;initialiser&nbsp;&raquo; redistribue les pi&egrave;ces autour de la zone de jeu.</li>
+          <li>Clique sur &laquo;&nbsp;Agrandir&nbsp;&raquo; pour passer en plein &eacute;cran puis sur &laquo;&nbsp;R&eacute;duire&nbsp;&raquo; pour revenir.</li>
+          <li>Le bouton &laquo;&nbsp;R&eacute;initialiser&nbsp;&raquo; redistribue les pi&egrave;ces &agrave; l&apos;int&eacute;rieur du cadre.</li>
         </ul>
         <p>
           Tu peux revenir aux missions ECOLUD &agrave; tout moment pour suivre ta progression et challenger ton &eacute;quipe.
@@ -797,7 +774,7 @@ body.page-puzzle3d {
       reparentKeepWorld(B, parent);
       forcePlanarZ(parent, 0);
       // Bloc indissociable : on le marque "locked" si l’option est cochée
-      parent.userData.locked = document.getElementById('lockAfterMerge').checked;
+      parent.userData.locked = false;
       // Rattacher les entrées au nouveau parent
       const affected = [];
       for(const e of entries){
@@ -859,11 +836,18 @@ body.page-puzzle3d {
     const placedInfo = document.getElementById('placedInfo');
     const groupInfo  = document.getElementById('groupInfo');
     function updateHUD(){
+      if (!placedInfo && !groupInfo) {
+        return;
+      }
       const nPlaced = entries.filter(e=>e.placed).length;
-      placedInfo.textContent = `${nPlaced} placees`;
-      const blk = dragging? findBlock(dragging.group) : null;
-      const count = blk? countPieces(blk):1;
-      groupInfo.textContent = `Bloc: ${count} piece${count>1?'s':''}`;
+      if (placedInfo) {
+        placedInfo.textContent = `${nPlaced} placees`;
+      }
+      if (groupInfo) {
+        const blk = dragging ? findBlock(dragging.group) : null;
+        const count = blk ? countPieces(blk) : 1;
+        groupInfo.textContent = `Bloc: ${count} piece${count>1?'s':''}`;
+      }
     }
     function countPieces(block){
       let c=0; for(const e of entries){ if(findBlock(e.group)===findBlock(block)) c++; }
@@ -876,8 +860,6 @@ body.page-puzzle3d {
     window.addEventListener('pointerup', pointerUp, {passive:false});
     // Réinitialiser positions aléatoires de départ
     const scatterEntries = () => {
-      const safeHalfW = PUZZLE_W / 2 - CELL_W * 0.6;
-      const safeHalfH = PUZZLE_H / 2 - CELL_H * 0.6;
       for (const e of entries) {
         const currentRoot = findBlock(e.group);
         if (currentRoot.children.length > 1 || currentRoot.parent !== puzzleRoot) {
@@ -913,9 +895,94 @@ body.page-puzzle3d {
       scatterEntries();
       showStatus('Distribution des pieces...', { hideAfter: 2000 });
     });
+
+    const stageElement = document.querySelector('.puzzle-stage');
+    const enterFullscreenBtn = document.getElementById('enterFullscreenBtn');
+    const exitFullscreenBtn = document.getElementById('exitFullscreenBtn');
+    const DEFAULT_MAX_WIDTH = `${CANVAS_W}px`;
+    const DEFAULT_MAX_HEIGHT = `${CANVAS_H}px`;
+    const BASE_ASPECT = BASE_WIDTH / BASE_HEIGHT;
+
+    const resizeForFullscreen = (isFullscreen) => {
+      if (!frameEl) {
+        return;
+      }
+      if (isFullscreen) {
+        const maxWidth = window.innerWidth - 32;
+        const maxHeight = window.innerHeight - 32;
+        let targetWidth = maxWidth;
+        let targetHeight = targetWidth / BASE_ASPECT;
+        if (targetHeight > maxHeight) {
+          targetHeight = maxHeight;
+          targetWidth = targetHeight * BASE_ASPECT;
+        }
+        renderer.setSize(targetWidth, targetHeight, false);
+        renderer.domElement.style.width = `${targetWidth}px`;
+        renderer.domElement.style.height = `${targetHeight}px`;
+        frameEl.style.maxWidth = 'none';
+        frameEl.style.maxHeight = 'none';
+      } else {
+        renderer.setSize(CANVAS_W, CANVAS_H, false);
+        renderer.domElement.style.width = '100%';
+        renderer.domElement.style.height = '100%';
+        frameEl.style.maxWidth = DEFAULT_MAX_WIDTH;
+        frameEl.style.maxHeight = DEFAULT_MAX_HEIGHT;
+      }
+    };
+
+    const handleEnterFullscreen = async () => {
+      if (!stageElement) return;
+      try {
+        await stageElement.requestFullscreen();
+      } catch (error) {
+        console.error('Fullscreen request failed', error);
+      }
+    };
+
+    const handleExitFullscreen = async () => {
+      if (document.fullscreenElement) {
+        try {
+          await document.exitFullscreen();
+        } catch (error) {
+          console.error('Exit fullscreen failed', error);
+        }
+      }
+    };
+
+    enterFullscreenBtn?.addEventListener('click', handleEnterFullscreen);
+    exitFullscreenBtn?.addEventListener('click', handleExitFullscreen);
+
+    document.addEventListener('fullscreenchange', () => {
+      const isActive = document.fullscreenElement === stageElement;
+      if (stageElement) {
+        stageElement.classList.toggle('is-fullscreen', isActive);
+      }
+      if (enterFullscreenBtn) {
+        enterFullscreenBtn.classList.toggle('hidden', isActive);
+      }
+      if (exitFullscreenBtn) {
+        exitFullscreenBtn.classList.toggle('hidden', !isActive);
+      }
+      resizeForFullscreen(isActive);
+    });
+
+    window.addEventListener('resize', () => {
+      if (document.fullscreenElement === stageElement) {
+        resizeForFullscreen(true);
+      }
+    });
+
+    resizeForFullscreen(false);
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 

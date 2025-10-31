@@ -24,7 +24,8 @@
         <a href="index.html#top" class="active" data-i18n="nav-home">Accueil</a>
         <a href="#shop" data-i18n="nav-shop">Boutique</a>
         <a href="pages/game.html" data-i18n="nav-play">Jouer</a>
-        <a href="#experience" data-i18n="nav-experience">Expérience</a>
+        <!-- <a href="#experience" data-i18n="nav-experience">Expérience</a> -->
+        <a href="pages/login.html" data-i18n="nav-partner" id="navPartnerLink">Partenaire</a>
         <a href="pages/contact.html" data-i18n="nav-contact">Contact</a>
       </nav>
       <div class="header-actions">
@@ -43,6 +44,14 @@
             data-i18n="change-profile"
           >
             Changer de profil
+          </button>
+        </div>
+        <div class="partner-actions hidden" id="partnerActions">
+          <a href="pages/prototypes.html" class="btn btn-ghost" id="partnerSpaceLink" data-i18n="partner-space">
+            Mon espace
+          </a>
+          <button type="button" class="btn btn-ghost" id="partnerLogoutBtn" data-i18n="partner-logout">
+            Déconnexion
           </button>
         </div>
           <div class="lang-toggle" role="group" aria-label="Changer de langue">
@@ -358,7 +367,7 @@
         </p>
       </div>
     </div>
-
+    <script src="assets/js/auth.js" defer></script>
     <script src="assets/js/app.js" defer></script>
     <script src="assets/js/script.js" defer></script>
   </body>

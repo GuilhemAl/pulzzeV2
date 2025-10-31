@@ -61,6 +61,11 @@
       "nav-leaderboard": "Classement",
       "nav-contact": "Contact",
       "nav-play": "Jouer",
+      "nav-prototypes": "Prototypes",
+      "nav-partner": "Partenaire",
+      "partner-space": "Mon espace",
+      "partner-logout": "Déconnexion",
+      "partner-empty": "Aucun prototype n\u2019est disponible pour votre compte pour le moment.",
       "nav-back": "Retour accueil",
       "header-cta": "Commander le coffret",
       "hero-title": "Construis ta plan\u00E8te en puzzle et joue avec un coffret unique",
@@ -266,6 +271,11 @@
       "nav-leaderboard": "Leaderboard",
       "nav-contact": "Contact",
       "nav-play": "Play",
+      "nav-prototypes": "Prototypes",
+      "nav-partner": "Partner",
+      "partner-space": "My space",
+      "partner-logout": "Log out",
+      "partner-empty": "No prototype is currently assigned to your account.",
       "nav-back": "Back to home",
       "header-cta": "Order the box",
       "hero-title": "Build your planet puzzle and unlock a unique play box",
@@ -471,6 +481,11 @@
       "nav-leaderboard": "Clasificaci\u00F3n",
       "nav-contact": "Contacto",
       "nav-play": "Jugar",
+      "nav-prototypes": "Prototipos",
+      "nav-partner": "Socio",
+      "partner-space": "Mi espacio",
+      "partner-logout": "Cerrar sesión",
+      "partner-empty": "Ning\u00FAn prototipo est\u00E1 disponible para tu cuenta por el momento.",
       "nav-back": "Volver al inicio",
       "header-cta": "Pedir el cofre",
       "hero-title": "Construye tu planeta en puzzle y juega con un cofre \u00FAnico",
@@ -732,6 +747,44 @@
   const hasCompleteProfile = (user) =>
     !!(user && typeof user === "object" && user.name && user.avatar);
 
+  const PARTNER_LOGIN_URL = IN_PAGES_DIRECTORY ? 'login.html' : 'pages/login.html';
+  const PARTNER_HOME_URL = IN_PAGES_DIRECTORY ? 'prototypes.html' : 'pages/prototypes.html';
+  const PARTNER_SESSION_STORAGE_KEY = 'partner_session';
+
+  const updatePartnerNavigation = () => {
+    const partnerLink = document.getElementById('navPartnerLink');
+    const partnerActions = document.getElementById('partnerActions');
+    const partnerSpaceLink = document.getElementById('partnerSpaceLink');
+    const partnerLogoutBtn = document.getElementById('partnerLogoutBtn');
+    const authModule = window.auth;
+    const account =
+      authModule && typeof authModule.getAccount === 'function' ? authModule.getAccount() : null;
+
+    if (partnerLink) {
+      partnerLink.setAttribute('href', account ? PARTNER_HOME_URL : PARTNER_LOGIN_URL);
+    }
+
+    if (partnerSpaceLink) {
+      partnerSpaceLink.setAttribute('href', PARTNER_HOME_URL);
+    }
+
+    const isGamePage = CURRENT_PATH.endsWith('/game.html');
+
+    if (partnerActions) {
+      partnerActions.classList.toggle('hidden', !account || isGamePage);
+    }
+
+    if (partnerLogoutBtn && !partnerLogoutBtn.dataset.boundLogout) {
+      partnerLogoutBtn.dataset.boundLogout = 'true';
+      partnerLogoutBtn.addEventListener('click', () => {
+        if (authModule && typeof authModule.logout === 'function') {
+          authModule.logout();
+        }
+        window.location.href = PARTNER_LOGIN_URL;
+      });
+    }
+  };
+
   const refreshNavSession = () => {
     const user = getStoredUser();
     const hasAnyProfile = !!(user && (user.name || user.avatar));
@@ -772,12 +825,27 @@
       changeButton.classList.toggle('hidden', !hasAnyProfile);
     }
 
+    const isGamePage = CURRENT_PATH.endsWith('/game.html');
+    if (!isGamePage) {
+      if (navBadge) {
+        navBadge.classList.add('hidden');
+      }
+      if (changeButton) {
+        changeButton.classList.add('hidden');
+      }
+      if (navSession) {
+        navSession.classList.remove('nav-session--active');
+      }
+    }
+
     if (playButton) {
       const label = translate('nav-play') || 'Jouer';
       playButton.classList.remove('hidden');
       playButton.textContent = label;
       playButton.setAttribute('href', resolveRootRelative('pages/game.html'));
     }
+
+    updatePartnerNavigation();
 
     return user;
   };
@@ -1258,6 +1326,12 @@
   document.addEventListener('ecolud:collective-progress', (event) => {
     const value = event.detail && typeof event.detail.value === "number" ? event.detail.value : undefined;
     syncGlobalProgress(value);
+  });
+
+  window.addEventListener('storage', (event) => {
+    if (event && event.key === PARTNER_SESSION_STORAGE_KEY) {
+      updatePartnerNavigation();
+    }
   });
 
   window.addEventListener('load', () => {
