@@ -348,6 +348,14 @@ button:not(.btn):hover {
   flex-shrink: 0;
 }
 
+.site-logo img {
+  display: block;
+  height: 65px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+}
+
 .site-nav {
   grid-area: nav;
   min-width: 0;

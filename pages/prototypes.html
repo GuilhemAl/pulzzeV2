@@ -14,13 +14,29 @@
       .page-prototypes main {
         padding-top: 88px;
         display: grid;
-        gap: 3.6rem;
+        gap: 1.3rem;
       }
       .page-prototypes .prototypes-hero {
-        padding: 4rem 6vw 0;
+        padding: 1rem 6vw 0;
         display: grid;
         gap: 1.4rem;
         text-align: center;
+      }
+      .page-prototypes .hero-heading {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(1rem, 3vw, 1.6rem);
+        flex-wrap: wrap;
+      }
+      .page-prototypes .association-logo {
+        width: clamp(120px, 18vw, 160px);
+        margin: 0;
+      }
+      .page-prototypes .association-logo img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
       .page-prototypes .prototypes-hero p {
         margin: 0 auto;
@@ -47,8 +63,12 @@
       .page-prototypes .prototype-card img {
         width: 100%;
         border-radius: var(--radius-md);
-        aspect-ratio: 4 / 3;
-        object-fit: cover;
+        aspect-ratio: 2 / 3;
+        max-height: 420px;
+        margin: 0 auto;
+        object-fit: contain;
+        object-position: center;
+        background: rgba(255, 255, 255, 0.6);
       }
       .page-prototypes .prototype-meta {
         display: flex;
@@ -74,8 +94,7 @@
   <body class="page-prototypes">
     <header class="site-header" id="siteHeader">
       <a href="../index.html" class="site-logo" aria-label="ECOLUD accueil">
-        <span aria-hidden="true">&#127793;</span>
-        ECOLUD
+        <img src="../assets/images/logo/ecolud.png" alt="ECOLUD" />
       </a>
       <nav class="site-nav" aria-label="Navigation principale">
         <a href="../index.html#top" data-i18n="nav-home">Accueil</a>
@@ -121,52 +140,56 @@
 
     <main data-i18n-container>
       <section class="prototypes-hero">
-        <h1>Prototypes ECOLUD</h1>
+        <div class="hero-heading">
+          <div class="association-logo">
+            <img src="../assets/images/logo/logo_association.png" alt="Logo de l'association Graine de Planète" />
+          </div>
+          <h1>Graine de Planète</h1>
+        </div>
         <p id="partnerWelcome">
           Voici nos propositions de prototype pour l'association Graine de Planète
         </p>
       </section>
-
       <section class="prototype-grid">
         <h2>Prototypes de test</h2>
         <div class="prototype-list">
           <a class="product-card glass-card prototype-card" href="puzzle-a.html" data-proto="puzzle-a">
-            <img src="../assets/images/backgrounds/header_square.png" alt="Prototype récif corallien" />
+            <img src="../assets/images/puzzles/Français.png" alt="Illustration puzzle Protège les océans" />
             <div>
-              <h3>Protect the Oceans</h3>
+              <h3>Protège les océans</h3>
               <p class="product-description">
                 Assemble le récif magnétique et découvre les espèces qui s’y cachent.
               </p>
             </div>
             <div class="prototype-meta">
               <span>Version 0.9</span>
-              <span>Jan 2025</span>
+              <span>Novembre 2025</span>
             </div>
           </a>
           <a class="product-card glass-card prototype-card" href="puzzle-b.html" data-proto="puzzle-b">
-            <img src="../assets/images/backgrounds/forest.jpg" alt="Prototype forêt vivante" />
+            <img src="../assets/images/puzzles/protect_the_oceans.png" alt="Protect the Oceans puzzle cover" />
             <div>
-              <h3>Forest Guardians</h3>
+              <h3>Protect the Oceans</h3>
               <p class="product-description">
-                Replante la canopée et synchronise tes pièces pour faire renaître la forêt.
+                Rebuild the magnetic reef and reveal the marine life hidden within every tile.
               </p>
             </div>
             <div class="prototype-meta">
               <span>Version 0.7</span>
-              <span>Fév 2025</span>
+              <span>Novembre 2025</span>
             </div>
           </a>
           <a class="product-card glass-card prototype-card" href="puzzle-c.html" data-proto="puzzle-c">
-            <img src="../assets/images/backgrounds/bubbles.png" alt="Prototype expédition abyssale" />
+            <img src="../assets/images/puzzles/Espagnol.png" alt="Arte del rompecabezas Protege los océanos" />
             <div>
-              <h3>Deep Sea Cleanup</h3>
+              <h3>Protege los océanos</h3>
               <p class="product-description">
-                Nettoie la zone et libère les animaux marins en réassemblant les modules.
+                Reconstruye el arrecife magnético y descubre las especies que se esconden en cada módulo.
               </p>
             </div>
             <div class="prototype-meta">
               <span>Version 0.6</span>
-              <span>Mar 2025</span>
+              <span>Novembre 2025</span>
             </div>
           </a>
         </div>

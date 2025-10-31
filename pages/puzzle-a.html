@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ECOLUD – Protect the Oceans</title>
+    <title>Graine de Planète – Protège les océans</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/game.css" />
     <link
@@ -68,6 +68,49 @@
         gap: 0.8rem;
         justify-content: center;
       }
+      .exit-modal-overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        background: rgba(18, 59, 61, 0.55);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      .exit-modal-overlay.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .exit-modal {
+        width: min(420px, 100%);
+        background: var(--glass);
+        border-radius: 28px;
+        box-shadow: var(--shadow-soft);
+        padding: clamp(1.8rem, 3vw, 2.4rem);
+        display: grid;
+        gap: 1.2rem;
+        text-align: center;
+        color: var(--text-dark);
+      }
+      .exit-modal h2 {
+        margin: 0;
+        font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+      }
+      .exit-modal p {
+        margin: 0;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+      .exit-modal-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
       @media (max-width: 768px) {
         .page-prototype .prototype-meta {
           flex-direction: column;
@@ -79,8 +122,7 @@
   <body class="page-prototype page-puzzle-a">
     <header class="site-header" id="siteHeader">
       <a href="../index.html" class="site-logo" aria-label="ECOLUD accueil">
-        <span aria-hidden="true">&#127793;</span>
-        ECOLUD
+        <img src="../assets/images/logo/ecolud.png" alt="ECOLUD" />
       </a>
       <nav class="site-nav" aria-label="Navigation principale">
         <a href="../index.html#top" data-i18n="nav-home">Accueil</a>
@@ -126,34 +168,78 @@
 
     <main data-i18n-container>
       <section class="prototype-hero">
-        <h1>Protect the Oceans</h1>
+        <h1>Protège les océans</h1>
         <p>
-          Assemble les modules coralliens pour reformer le récif ECOLUD. Chaque pièce placée libère une espèce
-          marine et restaure l’écosystème.
+          Protégeons les océans : le plastique menace la vie marine. Ce prototype, créé avec Graine de Planète, t’invite à
+          reconstituer la scène et à adopter des gestes anti-plastique, tout en réduisant au maximum l’impact sur la faune
+          sous-marine, au service des ateliers de l’association.
         </p>
         <div class="prototype-meta">
           <span><strong>Pièces :</strong> 48</span>
           <span><strong>Version :</strong> 0.9</span>
-          <span><strong>Dernière mise à jour :</strong> Jan 2025</span>
+          <span><strong>Dernière mise à jour :</strong> Novembre 2025</span>
         </div>
       </section>
 
       <section class="prototype-embed">
         <div class="embed-card glass-card">
           <iframe
-            src="https://www.jigsawplanet.com/?rc=play&amp;pid=0fc47da34e78&amp;view=iframe"
-            title="Puzzle Protect the Oceans"
+            data-puzzle-src="https://www.jigsawplanet.com/?rc=play&pid=3043bb2b3101&view=iframe"
+            src="about:blank"
+            title="Puzzle Protegeons les oceans"
             allowfullscreen
           ></iframe>
         </div>
+        <span
+          style="display:inline-block;margin:1em;width:160px;text-align:center"
+        >
+          <a
+            href="https://www.jigsawplanet.com/?rc=play&amp;pid=3043bb2b3101"
+            style="display:inline-block;position:relative"
+          >
+            <img
+              alt="preview"
+              style="display:block;box-shadow:2px 2px 4px rgba(0,0,0,.4)"
+              src="https://im.jigsawplanet.com/?rc=img&amp;pid=3043bb2b3101&amp;size=160"
+            />
+            <span
+              style="position:absolute;right:4px;bottom:4px;font:bold 120% Verdana,sans-serif;white-space:nowrap;filter:drop-shadow(1px 1px 2px #000)"
+            >
+              <span style="color:#fff;vertical-align:middle">35</span>
+              <img
+                style="width:1.5em;height:1.5em;vertical-align:middle"
+                src="https://www.jigsawplanet.com/img/shapes/11.svg"
+                alt="piece"
+              />
+            </span>
+          </a>
+          <a
+            style="display:block;margin-top:.2em;overflow-wrap:break-word"
+            href="https://www.jigsawplanet.com/?rc=play&amp;pid=3043bb2b3101"
+            >Protegeons les oceans</a
+          >
+        </span>
         <div class="prototype-actions">
           <a class="btn btn-secondary" href="prototypes.html">Retour aux prototypes</a>
-          <a class="btn btn-ghost" href="https://www.jigsawplanet.com/?rc=play&amp;pid=0fc47da34e78" target="_blank" rel="noopener">
+          <a class="btn btn-ghost" href="https://www.jigsawplanet.com/?rc=play&amp;pid=3043bb2b3101" target="_blank" rel="noopener">
             Ouvrir sur JigsawPlanet
           </a>
         </div>
       </section>
     </main>
+
+    <div class="exit-modal-overlay hidden" id="exitModalOverlay">
+      <div class="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+        <h2 id="exitModalTitle">Quitter le puzzle&nbsp;?</h2>
+        <p>
+          Vous êtes sur le point de quitter ce puzzle Graine de Planète. Toute progression en cours sera perdue.
+        </p>
+        <div class="exit-modal-actions">
+          <button type="button" class="btn btn-secondary" id="exitCancel">Annuler</button>
+          <button type="button" class="btn btn-primary" id="exitConfirm">Quitter le puzzle</button>
+        </div>
+      </div>
+    </div>
 
     <footer class="page-footer">
       <span>&copy; 2025 ECOLUD – Prototype éducatif écologique</span>
@@ -228,6 +314,153 @@
         </p>
       </div>
     </div>
+    <script>
+      (function () {
+        const message =
+          'Vous êtes sur le point de quitter ce puzzle Graine de Planète. Toute progression sera perdue. Continuer ?';
+
+        const overlay = document.getElementById('exitModalOverlay');
+        const confirmBtn = document.getElementById('exitConfirm');
+        const cancelBtn = document.getElementById('exitCancel');
+        let pendingAction = null;
+        let lastFocusedElement = null;
+
+        const frame = document.querySelector('iframe[data-puzzle-src]');
+        const baseSrc = frame
+          ? frame.getAttribute('data-puzzle-src') || frame.dataset.puzzleSrc
+          : null;
+
+        const buildFreshSrc = () => {
+          if (!baseSrc) return null;
+          try {
+            const url = new URL(baseSrc, window.location.href);
+            url.searchParams.set('session', Date.now().toString(36));
+            return url.toString();
+          } catch (_) {
+            const separator = baseSrc.includes('?') ? '&' : '?';
+            return baseSrc + separator + 'session=' + Date.now().toString(36);
+          }
+        };
+
+        const clearFrame = () => {
+          if (frame) {
+            frame.src = 'about:blank';
+          }
+        };
+
+        const loadFreshFrame = () => {
+          const nextSrc = buildFreshSrc();
+          if (frame && nextSrc) {
+            frame.src = nextSrc;
+          }
+        };
+
+        loadFreshFrame();
+
+        const closeModal = () => {
+          if (!overlay) return;
+          overlay.classList.remove('is-visible');
+          setTimeout(() => overlay.classList.add('hidden'), 200);
+          document.body.classList.remove('modal-open');
+          if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+            lastFocusedElement.focus();
+          }
+          pendingAction = null;
+        };
+
+        const executeAndLeave = (action) => {
+          clearFrame();
+          closeModal();
+          if (typeof action === 'function') {
+            action();
+          }
+        };
+
+        const openModal = (action) => {
+          if (!overlay) {
+            executeAndLeave(action);
+            return;
+          }
+          pendingAction = typeof action === 'function' ? action : null;
+          lastFocusedElement = document.activeElement;
+          overlay.classList.remove('hidden');
+          requestAnimationFrame(() => overlay.classList.add('is-visible'));
+          document.body.classList.add('modal-open');
+          confirmBtn?.focus();
+        };
+
+        confirmBtn?.addEventListener('click', () => {
+          const action = pendingAction;
+          pendingAction = null;
+          executeAndLeave(action);
+        });
+
+        cancelBtn?.addEventListener('click', () => {
+          pendingAction = null;
+          closeModal();
+        });
+
+        overlay?.addEventListener('click', (event) => {
+          if (event.target === overlay) {
+            pendingAction = null;
+            closeModal();
+          }
+        });
+
+        document.querySelectorAll('a[href]').forEach((link) => {
+          const href = link.getAttribute('href') || '';
+          if (!href || href.startsWith('#')) {
+            return;
+          }
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            openModal(() => {
+              window.location.href = href;
+            });
+          });
+        });
+
+        window.addEventListener('keydown', (event) => {
+          const key = event.key;
+          if (
+            key === 'F5' ||
+            ((event.ctrlKey || event.metaKey) && key.toLowerCase() === 'r')
+          ) {
+            event.preventDefault();
+            openModal(() => {
+              window.location.reload();
+            });
+            return;
+          }
+          if (key === 'Escape' && overlay?.classList.contains('is-visible')) {
+            event.preventDefault();
+            pendingAction = null;
+            closeModal();
+          }
+        });
+
+        window.addEventListener('pageshow', (event) => {
+          if (event.persisted) {
+            clearFrame();
+            loadFreshFrame();
+          }
+        });
+
+        window.addEventListener('beforeunload', (event) => {
+          event.preventDefault();
+          event.returnValue = message;
+          clearFrame();
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'hidden') {
+            clearFrame();
+          }
+        });
+
+        window.addEventListener('pagehide', clearFrame);
+              })();
+    </script>
     <script src="../assets/js/auth.js" defer></script>
     <script src="../assets/js/app.js" defer></script>
   </body>
