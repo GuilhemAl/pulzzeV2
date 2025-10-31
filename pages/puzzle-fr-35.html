@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECOLUD &mdash; Prot&eacute;geons les oc&eacute;ans (35&nbsp;pi&egrave;ces)</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/game.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .page-prototype main {
+        padding-top: 88px;
+        display: grid;
+        gap: 3.4rem;
+      }
+      .page-prototype .prototype-hero {
+        padding: 4rem 6vw 0;
+        display: grid;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .page-prototype .prototype-hero p {
+        margin: 0 auto;
+        max-width: 640px;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+      .page-prototype .prototype-meta {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+      .page-prototype .prototype-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .page-prototype .prototype-embed {
+        padding: 0 6vw 4rem;
+        display: grid;
+        gap: 1.4rem;
+        justify-items: center;
+      }
+      .page-prototype .embed-card {
+        width: min(100%, 960px);
+        aspect-ratio: 4 / 3;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+        background: rgba(255, 255, 255, 0.92);
+        display: flex;
+        align-items: stretch;
+      }
+      .page-prototype iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #fff;
+      }
+      .page-prototype .prototype-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+      }
+      .exit-modal-overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        background: rgba(18, 59, 61, 0.55);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      .exit-modal-overlay.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .exit-modal {
+        width: min(420px, 100%);
+        background: var(--glass);
+        border-radius: 28px;
+        box-shadow: var(--shadow-soft);
+        padding: clamp(1.8rem, 3vw, 2.4rem);
+        display: grid;
+        gap: 1.2rem;
+        text-align: center;
+        color: var(--text-dark);
+      }
+      .exit-modal h2 {
+        margin: 0;
+        font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+      }
+      .exit-modal p {
+        margin: 0;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+      .exit-modal-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 768px) {
+        .page-prototype .prototype-meta {
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-prototype page-puzzle-a">
+    <header class="site-header" id="siteHeader">
+      <a href="../index.html" class="site-logo" aria-label="ECOLUD accueil">
+        <img src="../assets/images/logo/ecolud.png" alt="ECOLUD" />
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="../index.html#top" data-i18n="nav-home">Accueil</a>
+        <a href="../index.html#shop" data-i18n="nav-shop">Boutique</a>
+        <a href="game.html" data-i18n="nav-play">Jouer</a>
+        <!-- <a href="../index.html#experience" data-i18n="nav-experience">Exp�rience</a> -->
+        <a href="login.html" data-i18n="nav-partner" id="navPartnerLink">Partenaire</a>
+        <a href="contact.html" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="nav-session" id="navSession">
+          <div class="player-badge user-info hidden" id="navPlayerBadge" aria-live="polite">
+            <img id="navPlayerAvatar" src="" alt="Avatar du joueur" />
+            <span id="navPlayerName"></span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-ghost nav-change hidden"
+            id="navChangeProfile"
+            data-change-profile
+            data-profile-target="pages/choose.html"
+            data-profile-mode="reset"
+            data-i18n="change-profile"
+          >
+            Changer de profil
+          </button>
+        </div>
+        <div class="partner-actions hidden" id="partnerActions">
+          <a href="prototypes.html" class="btn btn-ghost" id="partnerSpaceLink" data-i18n="partner-space">
+            Mon espace
+          </a>
+          <button type="button" class="btn btn-ghost" id="partnerLogoutBtn" data-i18n="partner-logout">
+            D�connexion
+          </button>
+        </div>
+        <div class="lang-toggle" role="group" aria-label="Changer de langue">
+          <button type="button" class="active" data-lang-btn data-lang="fr">FR</button>
+          <button type="button" data-lang-btn data-lang="en">EN</button>
+          <button type="button" data-lang-btn data-lang="es">ES</button>
+        </div>
+      </div>
+    </header>
+
+    <main data-i18n-container>
+      <section class="prototype-hero">
+        <h1>Prot&eacute;geons les oc&eacute;ans</h1>
+        <p>
+          Prot&eacute;geons les oc&eacute;ans : le plastique menace la vie marine. Ce prototype, cr&eacute;&nbsp;avec Graine de Plan&egrave;te, t&rsquo;invite &agrave; reconstituer la sc&egrave;ne et &agrave; adopter des gestes anti-plastique, tout en r&eacute;duisant au maximum l&rsquo;impact sur la faune sous-marine, au service des ateliers de l&rsquo;association.
+        </p>
+        <div class="prototype-meta">
+          <span><strong>Pi&egrave;ces&nbsp;:</strong> 35</span>
+          <span><strong>Version&nbsp;:</strong> 1.0</span>
+          <span><strong>Derni&egrave;re mise &agrave; jour&nbsp;:</strong> Novembre 2025</span>
+        </div>
+      </section>
+
+      <section class="prototype-embed">
+        <div class="embed-card glass-card">
+          <iframe
+            data-puzzle-src="https://www.jigsawplanet.com/?rc=play&amp;pid=02a98032af56&amp;view=iframe&amp;bgcolor=0x429a73"
+            src="about:blank"
+            title="Prot&eacute;geons les oc&eacute;ans &mdash; 35&nbsp;pi&egrave;ces"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="prototype-actions">
+          <a class="btn btn-secondary" href="prototypes.html">Retour aux prototypes</a>
+          <a class="btn btn-ghost" href="https://www.jigsawplanet.com/?rc=play&amp;pid=02a98032af56" target="_blank" rel="noopener">
+            Ouvrir sur JigsawPlanet
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <div class="exit-modal-overlay hidden" id="exitModalOverlay">
+      <div class="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+        <h2 id="exitModalTitle">Quitter le puzzle&nbsp;?</h2>
+        <p>
+          Vous �tes sur le point de quitter ce puzzle Graine de Plan�te. Toute progression en cours sera perdue.
+        </p>
+        <div class="exit-modal-actions">
+          <button type="button" class="btn btn-secondary" id="exitCancel">Annuler</button>
+          <button type="button" class="btn btn-primary" id="exitConfirm">Quitter le puzzle</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span>&copy; 2025 ECOLUD � Prototype �ducatif �cologique</span>
+      <div class="footer-links">
+        <a href="../index.html#missions" data-i18n="footer-missions">Voir les missions</a>
+        <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialit�</a>
+      </div>
+    </footer>
+
+    <div id="floating-avatar" class="hidden" aria-hidden="true">
+      <img id="avatarCompanion" src="../assets/images/avatars/turtle.png" alt="Mascotte flottante" />
+    </div>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
+        <h1>Politique de confidentialit�</h1>
+        <p><strong>Derni�re mise � jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype �ducatif �cologique, joignable �
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Donn�es collect�es</h2>
+        <ul>
+          <li>Nom, pr�nom et avatar s�lectionn� par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d�inscription.</li>
+          <li>Donn�es d�interaction&nbsp;: progression, pr�f�rences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalit�s du traitement</h2>
+        <ul>
+          <li>Fournir une exp�rience ludique et �ducative autour de l��cologie.</li>
+          <li>G�rer les missions collaboratives, classements et statistiques.</li>
+          <li>R�pondre aux demandes de contact et assurer le suivi p�dagogique.</li>
+          <li>Am�liorer le contenu et l�ergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases l�gales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l�ex�cution d'une mission d�int�r�t
+          �ducatif et le respect d'obligations l�gales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les donn�es sont h�berg�es en Union europ�enne. Aucune transmission commerciale n'est r�alis�e.
+          Des prestataires techniques agr��s peuvent y acc�der pour la maintenance du service.
+        </p>
+
+        <h2>6. Dur�e de conservation</h2>
+        <p>
+          Les donn�es sont conserv�es uniquement pendant la dur�e de l�inscription active ou des missions
+          �ducatives en cours.
+        </p>
+
+        <h2>7. Droits de l�utilisateur</h2>
+        <p>
+          L�utilisateur peut � tout moment demander la suppression ou la rectification de ses donn�es via l�adresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. S�curit�</h2>
+        <p>Les donn�es sont prot�g�es par chiffrement SSL et sauvegardes s�curis�es.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative � cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const message =
+          'Vous �tes sur le point de quitter ce puzzle Graine de Plan�te. Toute progression sera perdue. Continuer ?';
+
+        const overlay = document.getElementById('exitModalOverlay');
+        const confirmBtn = document.getElementById('exitConfirm');
+        const cancelBtn = document.getElementById('exitCancel');
+        let pendingAction = null;
+        let lastFocusedElement = null;
+
+        const frame = document.querySelector('iframe[data-puzzle-src]');
+        const rawSrc = frame
+          ? frame.getAttribute('data-puzzle-src') || frame.dataset.puzzleSrc
+          : '';
+        const baseSrc = rawSrc ? rawSrc.replace(/&amp;/g, '&') : '';
+
+        const clearFrame = () => {};
+
+        const loadFreshFrame = () => {
+          if (frame && baseSrc) {
+            frame.src = baseSrc;
+          }
+        };
+
+        loadFreshFrame();
+
+        const closeModal = () => {
+          if (!overlay) return;
+          overlay.classList.remove('is-visible');
+          setTimeout(() => overlay.classList.add('hidden'), 200);
+          document.body.classList.remove('modal-open');
+          if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+            lastFocusedElement.focus();
+          }
+          pendingAction = null;
+        };
+
+        const executeAndLeave = (action) => {
+          clearFrame();
+          closeModal();
+          if (typeof action === 'function') {
+            action();
+          }
+        };
+
+        const openModal = (action) => {
+          if (!overlay) {
+            executeAndLeave(action);
+            return;
+          }
+          pendingAction = typeof action === 'function' ? action : null;
+          lastFocusedElement = document.activeElement;
+          overlay.classList.remove('hidden');
+          requestAnimationFrame(() => overlay.classList.add('is-visible'));
+          document.body.classList.add('modal-open');
+          confirmBtn?.focus();
+        };
+
+        confirmBtn?.addEventListener('click', () => {
+          const action = pendingAction;
+          pendingAction = null;
+          executeAndLeave(action);
+        });
+
+        cancelBtn?.addEventListener('click', () => {
+          pendingAction = null;
+          closeModal();
+        });
+
+        overlay?.addEventListener('click', (event) => {
+          if (event.target === overlay) {
+            pendingAction = null;
+            closeModal();
+          }
+        });
+
+        document.querySelectorAll('a[href]').forEach((link) => {
+          const href = link.getAttribute('href') || '';
+          if (!href || href.startsWith('#')) {
+            return;
+          }
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            openModal(() => {
+              window.location.href = href;
+            });
+          });
+        });
+
+        window.addEventListener('keydown', (event) => {
+          const key = event.key;
+          if (
+            key === 'F5' ||
+            ((event.ctrlKey || event.metaKey) && key.toLowerCase() === 'r')
+          ) {
+            event.preventDefault();
+            openModal(() => {
+              window.location.reload();
+            });
+            return;
+          }
+          if (key === 'Escape' && overlay?.classList.contains('is-visible')) {
+            event.preventDefault();
+            pendingAction = null;
+            closeModal();
+          }
+        });
+
+        window.addEventListener('pageshow', (event) => {
+          if (event.persisted) {
+            clearFrame();
+            loadFreshFrame();
+          }
+        });
+
+        
+
+        window.addEventListener('pagehide', clearFrame);
+              })();
+    </script>
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/app.js" defer></script>
+  </body>
+</html>
+
+
+
