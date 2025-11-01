@@ -6,6 +6,7 @@
     <title>ECOLUD &mdash; Prot&eacute;geons les oc&eacute;ans (35&nbsp;pi&egrave;ces)</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/game.css" />
+    <link rel="stylesheet" href="../assets/css/puzzle-help.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -68,49 +69,6 @@
         gap: 0.8rem;
         justify-content: center;
       }
-      .exit-modal-overlay {
-        position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: clamp(1.5rem, 4vw, 3rem);
-        background: rgba(18, 59, 61, 0.55);
-        z-index: 999;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.25s ease;
-      }
-      .exit-modal-overlay.is-visible {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .exit-modal {
-        width: min(420px, 100%);
-        background: var(--glass);
-        border-radius: 28px;
-        box-shadow: var(--shadow-soft);
-        padding: clamp(1.8rem, 3vw, 2.4rem);
-        display: grid;
-        gap: 1.2rem;
-        text-align: center;
-        color: var(--text-dark);
-      }
-      .exit-modal h2 {
-        margin: 0;
-        font-size: clamp(1.4rem, 2.6vw, 1.8rem);
-      }
-      .exit-modal p {
-        margin: 0;
-        color: var(--text-muted);
-        line-height: 1.6;
-      }
-      .exit-modal-actions {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
       @media (max-width: 768px) {
         .page-prototype .prototype-meta {
           flex-direction: column;
@@ -128,7 +86,7 @@
         <a href="../index.html#top" data-i18n="nav-home">Accueil</a>
         <a href="../index.html#shop" data-i18n="nav-shop">Boutique</a>
         <a href="game.html" data-i18n="nav-play">Jouer</a>
-        <!-- <a href="../index.html#experience" data-i18n="nav-experience">Expï¿½rience</a> -->
+        <!-- <a href="../index.html#experience" data-i18n="nav-experience">Exp´+¢rience</a> -->
         <a href="login.html" data-i18n="nav-partner" id="navPartnerLink">Partenaire</a>
         <a href="contact.html" data-i18n="nav-contact">Contact</a>
       </nav>
@@ -155,7 +113,7 @@
             Mon espace
           </a>
           <button type="button" class="btn btn-ghost" id="partnerLogoutBtn" data-i18n="partner-logout">
-            Dï¿½connexion
+            D´+¢connexion
           </button>
         </div>
         <div class="lang-toggle" role="group" aria-label="Changer de langue">
@@ -179,14 +137,40 @@
         </div>
       </section>
 
+      <div class="puzzle-helpbar" role="complementary" aria-label="Aide pour recommencer le puzzle">
+        <div>
+          <strong>Reprendre à zéro&nbsp;?</strong>
+          <span class="puzzle-helpbar-tip">Astuce : en navigation privée, le puzzle démarre souvent à zéro.</span>
+        </div>
+        <div class="puzzle-helpbar-actions">
+          <button type="button" class="btn btn-ghost" id="puzzleHelpGuideBtn">Guide “Recommencer”</button>
+          <a class="btn btn-secondary" id="puzzleOpenNewTab" target="_blank" rel="noopener">Ouvrir dans un nouvel onglet</a>
+        </div>
+      </div>
+
       <section class="prototype-embed">
         <div class="embed-card glass-card">
           <iframe
             data-puzzle-src="https://www.jigsawplanet.com/?rc=play&amp;pid=02a98032af56&amp;view=iframe&amp;bgcolor=0x429a73"
             src="about:blank"
+            sandbox="allow-scripts allow-forms allow-popups allow-top-navigation-by-user-activation allow-same-origin"
             title="Prot&eacute;geons les oc&eacute;ans &mdash; 35&nbsp;pi&egrave;ces"
             allowfullscreen
           ></iframe>
+          <div class="puzzle-guide-overlay" id="puzzleGuide" aria-hidden="true">
+            <div class="puzzle-guide-halo" aria-hidden="true"></div>
+            <div class="puzzle-guide-bubble" role="dialog" aria-label="Guide pour relancer le puzzle">
+              <p class="puzzle-guide-steps" data-device="desktop">
+                Étape&nbsp;1&nbsp;—&nbsp;Cliquer sur «&nbsp;<span class="guide-kebab" aria-hidden="true">?</span>&nbsp;» en bas à gauche<br />
+                Étape&nbsp;2&nbsp;—&nbsp;Choisir «&nbsp;Recommencer&nbsp;»
+              </p>
+              <p class="puzzle-guide-steps" data-device="mobile">
+                Étape&nbsp;1&nbsp;—&nbsp;Appuyer sur «&nbsp;<span class="guide-kebab" aria-hidden="true">?</span>&nbsp;» en bas à gauche<br />
+                Étape&nbsp;2&nbsp;—&nbsp;Choisir «&nbsp;Recommencer&nbsp;»
+              </p>
+              <button type="button" class="btn btn-primary" id="puzzleGuideClose">Fermer</button>
+            </div>
+          </div>
         </div>
         <div class="prototype-actions">
           <a class="btn btn-secondary" href="prototypes.html">Retour aux prototypes</a>
@@ -196,25 +180,13 @@
         </div>
       </section>
     </main>
-
-    <div class="exit-modal-overlay hidden" id="exitModalOverlay">
-      <div class="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
-        <h2 id="exitModalTitle">Quitter le puzzle&nbsp;?</h2>
-        <p>
-          Vous ï¿½tes sur le point de quitter ce puzzle Graine de Planï¿½te. Toute progression en cours sera perdue.
-        </p>
-        <div class="exit-modal-actions">
-          <button type="button" class="btn btn-secondary" id="exitCancel">Annuler</button>
-          <button type="button" class="btn btn-primary" id="exitConfirm">Quitter le puzzle</button>
-        </div>
-      </div>
     </div>
 
     <footer class="page-footer">
-      <span>&copy; 2025 ECOLUD ï¿½ Prototype ï¿½ducatif ï¿½cologique</span>
+      <span>&copy; 2025 ECOLUD ´+¢ Prototype ´+¢ducatif ´+¢cologique</span>
       <div class="footer-links">
         <a href="../index.html#missions" data-i18n="footer-missions">Voir les missions</a>
-        <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialitï¿½</a>
+        <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialit´+¢</a>
       </div>
     </footer>
 
@@ -225,189 +197,74 @@
     <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
       <div class="modal-content" role="document">
         <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
-        <h1>Politique de confidentialitï¿½</h1>
-        <p><strong>Derniï¿½re mise ï¿½ jour&nbsp;:</strong> 20 octobre 2025</p>
+        <h1>Politique de confidentialit´+¢</h1>
+        <p><strong>Derni´+¢re mise ´+¢ jour&nbsp;:</strong> 20 octobre 2025</p>
 
         <h2>1. Responsable du traitement</h2>
         <p>
-          <strong>ECOLUD</strong>, prototype ï¿½ducatif ï¿½cologique, joignable ï¿½
+          <strong>ECOLUD</strong>, prototype ´+¢ducatif ´+¢cologique, joignable ´+¢
           <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
         </p>
 
-        <h2>2. Donnï¿½es collectï¿½es</h2>
+        <h2>2. Donn´+¢es collect´+¢es</h2>
         <ul>
-          <li>Nom, prï¿½nom et avatar sï¿½lectionnï¿½ par le joueur.</li>
-          <li>Adresse e-mail en cas de contact ou dï¿½inscription.</li>
-          <li>Donnï¿½es dï¿½interaction&nbsp;: progression, prï¿½fï¿½rences de langue, messages via le formulaire.</li>
+          <li>Nom, pr´+¢nom et avatar s´+¢lectionn´+¢ par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d´+¢inscription.</li>
+          <li>Donn´+¢es d´+¢interaction&nbsp;: progression, pr´+¢f´+¢rences de langue, messages via le formulaire.</li>
         </ul>
 
-        <h2>3. Finalitï¿½s du traitement</h2>
+        <h2>3. Finalit´+¢s du traitement</h2>
         <ul>
-          <li>Fournir une expï¿½rience ludique et ï¿½ducative autour de lï¿½ï¿½cologie.</li>
-          <li>Gï¿½rer les missions collaboratives, classements et statistiques.</li>
-          <li>Rï¿½pondre aux demandes de contact et assurer le suivi pï¿½dagogique.</li>
-          <li>Amï¿½liorer le contenu et lï¿½ergonomie du site.</li>
+          <li>Fournir une exp´+¢rience ludique et ´+¢ducative autour de l´+¢´+¢cologie.</li>
+          <li>G´+¢rer les missions collaboratives, classements et statistiques.</li>
+          <li>R´+¢pondre aux demandes de contact et assurer le suivi p´+¢dagogique.</li>
+          <li>Am´+¢liorer le contenu et l´+¢ergonomie du site.</li>
         </ul>
 
-        <h2>4. Bases lï¿½gales</h2>
+        <h2>4. Bases l´+¢gales</h2>
         <p>
-          Les traitements reposent sur le consentement de l'utilisateur, lï¿½exï¿½cution d'une mission dï¿½intï¿½rï¿½t
-          ï¿½ducatif et le respect d'obligations lï¿½gales.
+          Les traitements reposent sur le consentement de l'utilisateur, l´+¢ex´+¢cution d'une mission d´+¢int´+¢r´+¢t
+          ´+¢ducatif et le respect d'obligations l´+¢gales.
         </p>
 
         <h2>5. Destinataires et transferts</h2>
         <p>
-          Les donnï¿½es sont hï¿½bergï¿½es en Union europï¿½enne. Aucune transmission commerciale n'est rï¿½alisï¿½e.
-          Des prestataires techniques agrï¿½ï¿½s peuvent y accï¿½der pour la maintenance du service.
+          Les donn´+¢es sont h´+¢berg´+¢es en Union europ´+¢enne. Aucune transmission commerciale n'est r´+¢alis´+¢e.
+          Des prestataires techniques agr´+¢´+¢s peuvent y acc´+¢der pour la maintenance du service.
         </p>
 
-        <h2>6. Durï¿½e de conservation</h2>
+        <h2>6. Dur´+¢e de conservation</h2>
         <p>
-          Les donnï¿½es sont conservï¿½es uniquement pendant la durï¿½e de lï¿½inscription active ou des missions
-          ï¿½ducatives en cours.
+          Les donn´+¢es sont conserv´+¢es uniquement pendant la dur´+¢e de l´+¢inscription active ou des missions
+          ´+¢ducatives en cours.
         </p>
 
-        <h2>7. Droits de lï¿½utilisateur</h2>
+        <h2>7. Droits de l´+¢utilisateur</h2>
         <p>
-          Lï¿½utilisateur peut ï¿½ tout moment demander la suppression ou la rectification de ses donnï¿½es via lï¿½adresse
+          L´+¢utilisateur peut ´+¢ tout moment demander la suppression ou la rectification de ses donn´+¢es via l´+¢adresse
           <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
         </p>
 
-        <h2>8. Sï¿½curitï¿½</h2>
-        <p>Les donnï¿½es sont protï¿½gï¿½es par chiffrement SSL et sauvegardes sï¿½curisï¿½es.</p>
+        <h2>8. S´+¢curit´+¢</h2>
+        <p>Les donn´+¢es sont prot´+¢g´+¢es par chiffrement SSL et sauvegardes s´+¢curis´+¢es.</p>
 
         <h2>9. Contact</h2>
         <p>
-          Pour toute question relative ï¿½ cette politique&nbsp;:
+          Pour toute question relative ´+¢ cette politique&nbsp;:
           <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
         </p>
       </div>
     </div>
-    <script>
-      (function () {
-        const message =
-          'Vous ï¿½tes sur le point de quitter ce puzzle Graine de Planï¿½te. Toute progression sera perdue. Continuer ?';
-
-        const overlay = document.getElementById('exitModalOverlay');
-        const confirmBtn = document.getElementById('exitConfirm');
-        const cancelBtn = document.getElementById('exitCancel');
-        let pendingAction = null;
-        let lastFocusedElement = null;
-
-        const frame = document.querySelector('iframe[data-puzzle-src]');
-        const rawSrc = frame
-          ? frame.getAttribute('data-puzzle-src') || frame.dataset.puzzleSrc
-          : '';
-        const baseSrc = rawSrc ? rawSrc.replace(/&amp;/g, '&') : '';
-
-        const clearFrame = () => {};
-
-        const loadFreshFrame = () => {
-          if (frame && baseSrc) {
-            frame.src = baseSrc;
-          }
-        };
-
-        loadFreshFrame();
-
-        const closeModal = () => {
-          if (!overlay) return;
-          overlay.classList.remove('is-visible');
-          setTimeout(() => overlay.classList.add('hidden'), 200);
-          document.body.classList.remove('modal-open');
-          if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-            lastFocusedElement.focus();
-          }
-          pendingAction = null;
-        };
-
-        const executeAndLeave = (action) => {
-          clearFrame();
-          closeModal();
-          if (typeof action === 'function') {
-            action();
-          }
-        };
-
-        const openModal = (action) => {
-          if (!overlay) {
-            executeAndLeave(action);
-            return;
-          }
-          pendingAction = typeof action === 'function' ? action : null;
-          lastFocusedElement = document.activeElement;
-          overlay.classList.remove('hidden');
-          requestAnimationFrame(() => overlay.classList.add('is-visible'));
-          document.body.classList.add('modal-open');
-          confirmBtn?.focus();
-        };
-
-        confirmBtn?.addEventListener('click', () => {
-          const action = pendingAction;
-          pendingAction = null;
-          executeAndLeave(action);
-        });
-
-        cancelBtn?.addEventListener('click', () => {
-          pendingAction = null;
-          closeModal();
-        });
-
-        overlay?.addEventListener('click', (event) => {
-          if (event.target === overlay) {
-            pendingAction = null;
-            closeModal();
-          }
-        });
-
-        document.querySelectorAll('a[href]').forEach((link) => {
-          const href = link.getAttribute('href') || '';
-          if (!href || href.startsWith('#')) {
-            return;
-          }
-          link.addEventListener('click', (event) => {
-            event.preventDefault();
-            openModal(() => {
-              window.location.href = href;
-            });
-          });
-        });
-
-        window.addEventListener('keydown', (event) => {
-          const key = event.key;
-          if (
-            key === 'F5' ||
-            ((event.ctrlKey || event.metaKey) && key.toLowerCase() === 'r')
-          ) {
-            event.preventDefault();
-            openModal(() => {
-              window.location.reload();
-            });
-            return;
-          }
-          if (key === 'Escape' && overlay?.classList.contains('is-visible')) {
-            event.preventDefault();
-            pendingAction = null;
-            closeModal();
-          }
-        });
-
-        window.addEventListener('pageshow', (event) => {
-          if (event.persisted) {
-            clearFrame();
-            loadFreshFrame();
-          }
-        });
-
-        
-
-        window.addEventListener('pagehide', clearFrame);
-              })();
-    </script>
     <script src="../assets/js/auth.js" defer></script>
     <script src="../assets/js/app.js" defer></script>
+    <script src="../assets/js/puzzle-help.js" defer></script>
   </body>
 </html>
+
+
+
+
+
 
 
 

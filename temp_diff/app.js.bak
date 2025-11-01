@@ -1305,88 +1305,7 @@
     document.dispatchEvent(new CustomEvent('ecolud:user-ready', { detail: { user } }));
   };
 
-  const PUZZLE_PAGE_PATTERN = /\/pages\/(puzzle(?:3d|-[^\/]+)\.html)$/;
-  let puzzleResetExecuted = false;
-
-  const isPuzzlePage = () => {
-    try {
-      return PUZZLE_PAGE_PATTERN.test(window.location.pathname);
-    } catch (error) {
-      console.warn('[PuzzleReset] Failed to inspect location pathname.', error);
-      return false;
-    }
-  };
-
-  const decodeIframeSrc = (value) =>
-    typeof value === 'string' ? value.replace(/&amp;/g, '&') : '';
-
-  const generateCacheBustedSrc = (src) => {
-    if (!src) {
-      return src;
-    }
-    try {
-      const url = new URL(src, window.location.href);
-      url.searchParams.set('r', Date.now().toString());
-      return url.toString();
-    } catch (error) {
-      console.warn('[PuzzleReset] Failed to build URL from iframe src.', error);
-      const separator = src.includes('?') ? '&' : '?';
-      return `${src}${separator}r=${Date.now()}`;
-    }
-  };
-
-  const maybeOpenForceFresh = (baseSrc) => {
-    if (!baseSrc) {
-      return false;
-    }
-    try {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('forceFresh') === '1') {
-        window.open(generateCacheBustedSrc(baseSrc), '_blank', 'noopener');
-        puzzleResetExecuted = true;
-        return true;
-      }
-    } catch (error) {
-      console.warn('[PuzzleReset] Failed while processing forceFresh flag.', error);
-    }
-    return false;
-  };
-
-  const resetPuzzleFrame = () => {
-    if (puzzleResetExecuted || !isPuzzlePage()) {
-      return;
-    }
-    const frame = document.querySelector('iframe');
-    if (!frame) {
-      return;
-    }
-    const baseSrc = decodeIframeSrc(
-      frame.getAttribute('data-puzzle-src') || frame.getAttribute('src')
-    );
-    if (!baseSrc) {
-      return;
-    }
-    if (maybeOpenForceFresh(baseSrc)) {
-      return;
-    }
-    frame.setAttribute('src', generateCacheBustedSrc(baseSrc));
-    puzzleResetExecuted = true;
-  };
-
-  const bootPuzzleFrame = () => {
-    puzzleResetExecuted = false;
-    resetPuzzleFrame();
-  };
-
-  window.addEventListener('pageshow', (event) => {
-    if (event?.persisted) {
-      puzzleResetExecuted = false;
-      resetPuzzleFrame();
-    }
-  });
-
   document.addEventListener('DOMContentLoaded', () => {
-    bootPuzzleFrame();
     initLanguageSwitches();
     setLanguage(currentLang, false);
     initHeaderScroll();
@@ -1419,8 +1338,3 @@
     document.body.classList.add('loaded');
   });
 })();
-
-
-
-
-

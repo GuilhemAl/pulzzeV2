@@ -1,0 +1,131 @@
+.puzzle-helpbar {
+  margin: 0 6vw 1.2rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  justify-content: space-between;
+}
+
+.puzzle-helpbar strong {
+  font-size: 1rem;
+  color: var(--primary-dark);
+}
+
+.puzzle-helpbar-tip {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.puzzle-helpbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.puzzle-helpbar-actions .btn {
+  white-space: nowrap;
+}
+
+.embed-card {
+  position: relative;
+}
+
+.puzzle-guide-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: flex-end;
+  justify-content: flex-start;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.puzzle-guide-overlay.visible {
+  display: flex;
+  pointer-events: auto;
+}
+
+.puzzle-guide-halo {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.3);
+  animation: puzzle-guide-pulse 1.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.puzzle-guide-bubble {
+  position: relative;
+  margin: 16px;
+  padding: 1rem 1.2rem;
+  background: rgba(13, 40, 58, 0.92);
+  color: #e6f5ff;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(8, 24, 40, 0.45);
+  max-width: min(280px, 70%);
+  display: grid;
+  gap: 0.6rem;
+  pointer-events: auto;
+}
+
+.puzzle-guide-bubble button {
+  justify-self: flex-start;
+}
+
+.puzzle-guide-steps[data-device='mobile'] {
+  display: none;
+}
+
+.guide-kebab {
+  display: inline-block;
+  font-weight: 700;
+  line-height: 1;
+  border: 1px solid currentColor;
+  border-radius: 0.35rem;
+  padding: 0.075rem 0.25rem;
+}
+
+@keyframes puzzle-guide-pulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 600px) {
+  .puzzle-helpbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .puzzle-guide-bubble {
+    max-width: 90%;
+  }
+  .puzzle-guide-steps[data-device='desktop'] {
+    display: none;
+  }
+  .puzzle-guide-steps[data-device='mobile'] {
+    display: block;
+  }
+}
