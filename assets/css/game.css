@@ -102,6 +102,18 @@
   font-size: 1.4rem;
 }
 
+.reward-note-item {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(18, 59, 61, 0.15);
+}
+
+.reward-note-text {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(18, 59, 61, 0.78);
+}
+
 .username {
   color: var(--primary);
   font-weight: 700;
