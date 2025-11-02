@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const CURRENT_PATH = window.location.pathname.replace(/\\/g, "/");
   const IN_PAGES_DIRECTORY = CURRENT_PATH.includes("/pages/");
   const ROOT_PREFIX = IN_PAGES_DIRECTORY ? "../" : "";
@@ -756,6 +756,7 @@
     const partnerActions = document.getElementById('partnerActions');
     const partnerSpaceLink = document.getElementById('partnerSpaceLink');
     const partnerLogoutBtn = document.getElementById('partnerLogoutBtn');
+    const header = document.querySelector('.site-header');
     const authModule = window.auth;
     const account =
       authModule && typeof authModule.getAccount === 'function' ? authModule.getAccount() : null;
@@ -770,8 +771,14 @@
 
     const isGamePage = CURRENT_PATH.endsWith('/game.html');
 
+    const shouldShowPartnerActions = !!(account && !isGamePage);
+
     if (partnerActions) {
-      partnerActions.classList.toggle('hidden', !account || isGamePage);
+      partnerActions.classList.toggle('hidden', !shouldShowPartnerActions);
+    }
+
+    if (header) {
+      header.classList.toggle('has-partner-actions', shouldShowPartnerActions);
     }
 
     if (partnerLogoutBtn && !partnerLogoutBtn.dataset.boundLogout) {
@@ -1041,12 +1048,50 @@
     }
 
     const partnerActions = header.querySelector('#partnerActions');
-    if (partnerActions && partnerActions.parentElement !== nav) {
-      nav.appendChild(partnerActions);
-    }
-    if (partnerActions) {
+    const partnerActionsHome = partnerActions?.parentElement || null;
+    let partnerPlaceholder = null;
+
+    const ensurePartnerPlaceholder = () => {
+      if (!partnerActions || !partnerActionsHome || partnerPlaceholder) {
+        return;
+      }
+      partnerPlaceholder = document.createComment('partner-actions-placeholder');
+      partnerActionsHome.insertBefore(partnerPlaceholder, partnerActions);
+    };
+
+    const movePartnerToNav = () => {
+      if (!partnerActions || !nav) {
+        return;
+      }
+      ensurePartnerPlaceholder();
+      if (partnerActions.parentElement !== nav) {
+        nav.appendChild(partnerActions);
+      }
       partnerActions.classList.add('nav-partner-actions');
-    }
+    };
+
+    const restorePartnerToHeader = () => {
+      if (!partnerActions || !partnerPlaceholder || !partnerActionsHome) {
+        return;
+      }
+      if (partnerActions.parentElement !== partnerActionsHome && partnerPlaceholder.parentNode) {
+        partnerPlaceholder.parentNode.insertBefore(partnerActions, partnerPlaceholder);
+      }
+      partnerActions.classList.remove('nav-partner-actions');
+    };
+
+    const syncPartnerPlacement = () => {
+      if (!partnerActions) {
+        return;
+      }
+      if (window.innerWidth <= 768) {
+        movePartnerToNav();
+      } else {
+        restorePartnerToHeader();
+      }
+    };
+
+    syncPartnerPlacement();
 
     const labelMap = {
       fr: { open: 'Ouvrir le menu', close: 'Fermer le menu' },
@@ -1089,6 +1134,15 @@
       });
     });
 
+    if (partnerActions) {
+      partnerActions.addEventListener('click', (event) => {
+        const trigger = event.target instanceof HTMLElement ? event.target.closest('a, button') : null;
+        if (trigger && window.innerWidth <= 768 && header.classList.contains('nav-open')) {
+          setTimeout(() => closeNav(), 0);
+        }
+      });
+    }
+
     document.addEventListener('click', (event) => {
       if (!header.contains(event.target) && header.classList.contains('nav-open')) {
         closeNav();
@@ -1096,6 +1150,7 @@
     });
 
     window.addEventListener('resize', () => {
+      syncPartnerPlacement();
       if (window.innerWidth > 768 && header.classList.contains('nav-open')) {
         closeNav();
       }
@@ -1538,6 +1593,11 @@
     document.body.classList.add('loaded');
   });
 })();
+
+
+
+
+
 
 
 
