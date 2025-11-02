@@ -379,6 +379,7 @@ button:not(.btn):hover {
   z-index: 20;
   overflow: visible;
   transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  --nav-max: clamp(560px, 58vw, 820px);
 }
 
 .site-header::after {
@@ -409,6 +410,10 @@ button:not(.btn):hover {
     rgba(113, 201, 206, 0.97) 100%
   );
   box-shadow: 0 18px 35px rgba(15, 52, 53, 0.18);
+}
+
+.site-header.has-partner-actions {
+  --nav-max: clamp(720px, 64vw, 980px);
 }
 
 .site-logo {
@@ -446,7 +451,7 @@ button:not(.btn):hover {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 16px 34px rgba(113, 201, 206, 0.16);
   width: 100%;
-  max-width: 820px;
+  max-width: var(--nav-max, 820px);
   justify-self: center;
 }
 
@@ -725,6 +730,18 @@ button:not(.btn):hover {
   .site-nav a {
     padding: 0.38rem 0.7rem;
     font-size: 0.85rem;
+  }
+
+  .site-nav #partnerActions {
+    width: 100%;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .site-nav #partnerActions .btn {
+    width: 100%;
   }
 
   .hero-layout {
