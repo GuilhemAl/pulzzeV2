@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <style>
+        <style>
       .page-prototypes main {
         padding-top: 88px;
         display: grid;
@@ -48,11 +48,23 @@
         padding: 0 6vw;
         display: grid;
         gap: 2rem;
+        justify-items: center;
+      }
+      .page-prototypes .prototype-section {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+      }
+      .page-prototypes .prototype-section > h2 {
+        margin: 0 0 1.2rem;
+        color: var(--primary-dark);
+        text-align: left;
       }
       .page-prototypes .prototype-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: clamp(1.6rem, 3vw, 2.4rem);
+        width: 100%;
       }
       .page-prototypes .prototype-card {
         display: grid;
@@ -70,16 +82,16 @@
         object-position: center;
         background: rgba(255, 255, 255, 0.6);
       }
+      .page-prototypes .prototype-card h3 {
+        margin: 0;
+        color: var(--primary-dark);
+      }
       .page-prototypes .prototype-meta {
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 0.9rem;
         color: var(--text-muted);
-      }
-      .page-prototypes .prototype-card h3 {
-        margin: 0;
-        color: var(--primary-dark);
       }
       .page-prototypes .prototype-actions {
         padding: 0 6vw 4rem;
@@ -88,6 +100,24 @@
       }
       .page-prototypes .prototype-actions .btn {
         width: fit-content;
+      }
+      @media (max-width: 1200px) {
+        .page-prototypes .prototype-list {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 900px) {
+        .page-prototypes .prototype-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .page-prototypes .prototype-section > h2 {
+          text-align: center;
+        }
+      }
+      @media (max-width: 600px) {
+        .page-prototypes .prototype-list {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -129,11 +159,6 @@
           <button type="button" class="btn btn-ghost" id="partnerLogoutBtn" data-i18n="partner-logout">
             Déconnexion
           </button>
-        </div>
-        <div class="lang-toggle" role="group" aria-label="Changer de langue">
-          <button type="button" class="active" data-lang-btn data-lang="fr">FR</button>
-          <button type="button" data-lang-btn data-lang="en">EN</button>
-          <button type="button" data-lang-btn data-lang="es">ES</button>
         </div>
       </div>
     </header>
@@ -231,10 +256,11 @@
               <span>Noviembre 2025</span>
             </div>
           </a>
+          </div>
+          <p class="section-intro hidden" id="noPrototypesNotice" data-i18n="partner-empty">
+            Aucun prototype n'est disponible pour votre compte pour le moment.
+          </p>
         </div>
-        <p class="section-intro hidden" id="noPrototypesNotice" data-i18n="partner-empty">
-          Aucun prototype n'est disponible pour votre compte pour le moment.
-        </p>
       </section>
 
     </main>
@@ -363,3 +389,5 @@
     </script>
   </body>
 </html>
+
+

@@ -929,7 +929,11 @@
   };
 
   const markActiveLang = (lang) => {
-    document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+    const langBtns = document.querySelectorAll('[data-lang-btn]');
+    if (!langBtns || langBtns.length === 0) {
+      return;
+    }
+    langBtns.forEach((btn) => {
       if (btn.dataset.lang === lang) {
         btn.classList.add("active");
         btn.setAttribute("aria-pressed", "true");
@@ -985,10 +989,23 @@
   };
 
   const initLanguageSwitches = () => {
-    document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+    const langBtns = document.querySelectorAll('[data-lang-btn]');
+    if (!langBtns || langBtns.length === 0) {
+      if (typeof setLanguage === "function") {
+        setLanguage("fr", false);
+      } else {
+        currentLang = "fr";
+        document.documentElement.lang = "fr";
+        applyTranslations();
+        syncGlobalProgress();
+      }
+      return;
+    }
+
+    langBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         const lang = btn.dataset.lang;
-        if (lang && lang !== currentLang) {
+        if (lang && lang !== currentLang && typeof setLanguage === "function") {
           setLanguage(lang);
         }
       });

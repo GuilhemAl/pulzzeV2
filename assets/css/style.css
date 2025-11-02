@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --bg-top: #cbeaff;
   --bg-bottom: #effff7;
   --primary: #00c4af;
@@ -1870,4 +1870,11 @@ button:not(.btn):hover {
   }
 }
 
-
+.partner-actions .btn {
+  font-size: 0.95rem;
+  padding: 0.55rem 1.25rem;
+  font-weight: 600;
+}
+.partner-actions .btn.btn-ghost {
+  color: rgba(18, 59, 61, 0.72);
+}
