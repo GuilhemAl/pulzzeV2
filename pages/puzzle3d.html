@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECOLUD &ndash; La Baleine (puzzle 3D)</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/game.css" />
+    <link rel="stylesheet" href="../assets/css/puzzle-help.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body.page-puzzle3d {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Poppins', sans-serif;
+        color: #123b3d;
+        background: linear-gradient(180deg, #e9f9ff 0%, #f6fff9 100%);
+        display: flex;
+        flex-direction: column;
+        padding-top: 88px;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(32px, 6vw, 48px);
+        padding: clamp(24px, 6vw, 64px) clamp(16px, 5vw, 72px);
+      }
+      .puzzle3d-hero {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 32px;
+        box-shadow: 0 30px 90px rgba(6, 65, 89, 0.14);
+        padding: clamp(24px, 5vw, 48px);
+        display: grid;
+        gap: clamp(16px, 3vw, 24px);
+      }
+      .puzzle3d-hero h1 {
+        margin: 0;
+        color: #0e5862;
+        font-size: clamp(28px, 6vw, 40px);
+      }
+      .puzzle3d-hero p {
+        margin: 0;
+        max-width: 760px;
+        line-height: 1.65;
+        color: #30575f;
+      }
+      .puzzle3d-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+        font-weight: 600;
+        color: #0e5862;
+      }
+      .puzzle3d-meta span {
+        background: rgba(14, 88, 98, 0.08);
+        border-radius: 999px;
+        padding: 6px 14px;
+      }
+      .puzzle3d-details {
+        display: grid;
+        gap: clamp(18px, 4vw, 32px);
+      }
+      .puzzle3d-details .glass-card {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 28px;
+        padding: clamp(20px, 4vw, 32px);
+        box-shadow: 0 24px 64px rgba(15, 104, 94, 0.12);
+        border: 1px solid rgba(9, 92, 82, 0.1);
+      }
+      .puzzle3d-details ul {
+        margin: 0;
+        padding: 0 0 0 20px;
+        color: #2f5d64;
+        display: grid;
+        gap: 10px;
+      }
+      .prototype-embed {
+        padding: 0 6vw 4rem;
+        display: grid;
+        gap: 1.4rem;
+        justify-items: center;
+      }
+      .prototype-embed .embed-card {
+        width: min(100%, 960px);
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+        background: rgba(255, 255, 255, 0.92);
+        display: flex;
+        align-items: stretch;
+      }
+      .prototype-embed .embed-card::before {
+        content: "";
+        display: block;
+        padding-bottom: 75%;
+      }
+      .prototype-embed .embed-card iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #fff;
+      }
+      .prototype-embed .embed-card iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #fff;
+      }
+      .prototype-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+      }
+      @media (max-width: 720px) {
+        body.page-puzzle3d {
+          padding-top: 72px;
+        }
+        .puzzle3d-meta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-prototype page-puzzle3d">
+    <header class="site-header" id="siteHeader">
+      <a href="../index.html" class="site-logo" aria-label="ECOLUD accueil">
+        <img src="../assets/images/logo/ecolud.png" alt="ECOLUD" />
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="../index.html#top" data-i18n="nav-home">Accueil</a>
+        <a href="../index.html#shop" data-i18n="nav-shop">Boutique</a>
+        <a href="game.html" class="active" data-i18n="nav-play">Jouer</a>
+        <a href="login.html" data-i18n="nav-partner" id="navPartnerLink">Partenaire</a>
+        <a href="contact.html" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="nav-session" id="navSession">
+          <div class="player-badge user-info hidden" id="navPlayerBadge" aria-live="polite">
+            <img id="navPlayerAvatar" src="" alt="Avatar du joueur" />
+            <span id="navPlayerName"></span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-ghost nav-change hidden"
+            id="navChangeProfile"
+            data-change-profile
+            data-profile-target="pages/choose.html"
+            data-profile-mode="reset"
+            data-i18n="change-profile"
+          >
+            Changer de profil
+          </button>
+        </div>
+        <div class="partner-actions hidden" id="partnerActions">
+          <a href="prototypes.html" class="btn btn-ghost" id="partnerSpaceLink" data-i18n="partner-space">
+            Mon espace
+          </a>
+          <button type="button" class="btn btn-ghost" id="partnerLogoutBtn" data-i18n="partner-logout">
+            Déconnexion
+          </button>
+        </div>
+      </div>
+    </header>
+    <main data-i18n-container>
+      <section class="prototype-hero">
+        <h1>La Baleine</h1>
+        <p>
+          Assemble la faune marine en 3D pour sensibiliser ton équipe à la protection des océans.
+          Cette version prototype met en scène une baleine animée et des coraux éclairés qui réagissent à chaque défi réussi.
+        </p>
+        <div class="prototype-meta">
+          <span><strong>Mode atelier</strong></span>
+          <span><strong>Version :</strong> 1.0</span>
+          <span><strong>Dernière mise à jour :</strong> Novembre 2025</span>
+        </div>
+      </section>
+
+      <div class="puzzle-helpbar" role="complementary" aria-label="Aide pour recommencer le puzzle">
+        <div>
+          <strong>Reprendre à zéro&nbsp;?</strong>
+          <span class="puzzle-helpbar-tip">Astuce : en navigation privée, le puzzle démarre souvent à zéro.</span>
+        </div>
+        <div class="puzzle-helpbar-actions">
+          <button type="button" class="btn btn-ghost" id="puzzleHelpGuideBtn">Guide «&nbsp;Recommencer&nbsp;»</button>
+          <a class="btn btn-secondary" id="puzzleOpenNewTab" target="_blank" rel="noopener">Ouvrir dans un nouvel onglet</a>
+        </div>
+      </div>
+
+      <section class="prototype-embed">
+        <div class="embed-card glass-card">
+          <iframe
+            data-puzzle-src="../Exemple/Baleine.html"
+            src="about:blank"
+            title="Puzzle La Baleine — prototype ECOLUD"
+            allowfullscreen
+          ></iframe>
+          <div class="puzzle-guide-overlay" id="puzzleGuide" aria-hidden="true">
+            <div class="puzzle-guide-halo" aria-hidden="true"></div>
+            <div class="puzzle-guide-bubble" role="dialog" aria-label="Guide pour relancer le puzzle">
+              <p class="puzzle-guide-steps" data-device="desktop">
+                Étape&nbsp;1&nbsp;-&nbsp;Cliquer sur «&nbsp;<span class="guide-kebab" aria-hidden="true">⋮</span>&nbsp;» en bas à gauche<br />
+                Étape&nbsp;2&nbsp;-&nbsp;Choisir «&nbsp;Recommencer&nbsp;»
+              </p>
+              <p class="puzzle-guide-steps" data-device="mobile">
+                Étape&nbsp;1&nbsp;-&nbsp;Appuyer sur «&nbsp;<span class="guide-kebab" aria-hidden="true">⋮</span>&nbsp;» en bas à gauche<br />
+                Étape&nbsp;2&nbsp;-&nbsp;Choisir «&nbsp;Recommencer&nbsp;»
+              </p>
+              <button type="button" class="btn btn-primary" id="puzzleGuideClose">Fermer</button>
+            </div>
+          </div>
+        </div>
+        <div class="prototype-actions">
+          <a class="btn btn-secondary" href="prototypes.html">Retour aux prototypes</a>
+          <a class="btn btn-ghost" href="../Exemple/Baleine.html" target="_blank" rel="noopener">
+            Explorer en plein écran
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <span>&copy; 2025 ECOLUD &mdash; Prototype éducatif écologique</span>
+      <div class="footer-links">
+        <a href="../index.html#missions" data-i18n="footer-missions">Voir les missions</a>
+        <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialité</a>
+      </div>
+    </footer>
+    <div id="floating-avatar" class="hidden" aria-hidden="true">
+      <img id="avatarCompanion" src="../assets/images/avatars/turtle.png" alt="Mascotte flottante" />
+    </div>
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
+        <h1>Politique de confidentialité</h1>
+        <p><strong>Dernière mise à jour&nbsp;:</strong> 20 octobre 2025</p>
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype éducatif écologique, joignable à
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+        <h2>2. Données collectées</h2>
+        <ul>
+          <li>Nom, prénom et avatar sélectionné par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d'inscription.</li>
+          <li>Données d'interaction&nbsp;: progression, préférences de langue, messages via le formulaire.</li>
+        </ul>
+        <h2>3. Finalités du traitement</h2>
+        <ul>
+          <li>Fournir une expérience ludique et éducative autour de l'écologie.</li>
+          <li>Gérer les missions collaboratives, classements et statistiques.</li>
+          <li>Répondre aux demandes de contact et assurer le suivi pédagogique.</li>
+          <li>Améliorer le contenu et l'ergonomie du site.</li>
+        </ul>
+        <h2>4. Bases légales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l'exécution d'une mission d'intérêt
+          éducatif et le respect d'obligations légales.
+        </p>
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les données sont hébergées en Union européenne. Aucune transmission commerciale n'est réalisée.
+          Des prestataires techniques agréés peuvent y accéder pour la maintenance du service.
+        </p>
+        <h2>6. Durée de conservation</h2>
+        <p>
+          Les données sont conservées uniquement pendant la durée de l'inscription active ou des missions
+          éducatives en cours.
+        </p>
+        <h2>7. Droits de l'utilisateur</h2>
+        <p>
+          L'utilisateur peut à tout moment demander la suppression ou la rectification de ses données via l'adresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+        <h2>8. Sécurité</h2>
+        <p>Les données sont protégées par chiffrement SSL et sauvegardes sécurisées.</p>
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative à cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/app.js" defer></script>
+    <script src="../assets/js/puzzle-help.js" defer></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+

@@ -10,8 +10,14 @@ from flask_socketio import SocketIO, emit
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 STATE_PATH = DATA_DIR / "players.json"
+ASSETS_DIR = BASE_DIR.parent / "assets"
 
-app = Flask(__name__, template_folder="templates", static_folder="static")
+app = Flask(
+    __name__,
+    template_folder="templates",
+    static_folder=str(ASSETS_DIR),
+    static_url_path="/assets",
+)
 app.config["SECRET_KEY"] = "replace-me"
 socketio = SocketIO(app, cors_allowed_origins="*")
 

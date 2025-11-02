@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECOLUD – Planète vivante</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -17,15 +17,15 @@
   <body class="page-index">
     <header class="site-header" id="siteHeader">
       <a href="index.html" class="site-logo" aria-label="ECOLUD accueil">
-        <span aria-hidden="true">&#127793;</span>
-        ECOLUD
+        <img src="assets/images/logo/ecolud.png" alt="ECOLUD" />
       </a>
       <nav class="site-nav" aria-label="Navigation principale">
         <a href="index.html#top" class="active" data-i18n="nav-home">Accueil</a>
         <a href="#shop" data-i18n="nav-shop">Boutique</a>
-        <a href="game.html" data-i18n="nav-play">Jouer</a>
-        <a href="#experience" data-i18n="nav-experience">Expérience</a>
-        <a href="contact.html" data-i18n="nav-contact">Contact</a>
+        <a href="pages/game.html" data-i18n="nav-play">Jouer</a>
+        <!-- <a href="#experience" data-i18n="nav-experience">Expérience</a> -->
+        <a href="pages/login.html" data-i18n="nav-partner" id="navPartnerLink">Partenaire</a>
+        <a href="pages/contact.html" data-i18n="nav-contact">Contact</a>
       </nav>
       <div class="header-actions">
         <div class="nav-session" id="navSession">
@@ -38,20 +38,20 @@
             class="btn btn-ghost nav-change hidden"
             id="navChangeProfile"
             data-change-profile
-            data-profile-target="profil.html"
+            data-profile-target="pages/choose.html"
             data-profile-mode="redirect"
             data-i18n="change-profile"
           >
             Changer de profil
           </button>
         </div>
-        <a class="btn btn-primary" id="navPlayButton" href="game.html" data-i18n="nav-play">
-          Jouer
-        </a>
-        <div class="lang-toggle" role="group" aria-label="Changer de langue">
-          <button type="button" class="active" data-lang-btn data-lang="fr">FR</button>
-          <button type="button" data-lang-btn data-lang="en">EN</button>
-          <button type="button" data-lang-btn data-lang="es">ES</button>
+        <div class="partner-actions hidden" id="partnerActions">
+          <a href="pages/prototypes.html" class="btn btn-ghost" id="partnerSpaceLink" data-i18n="partner-space">
+            Mon espace
+          </a>
+          <button type="button" class="btn btn-ghost" id="partnerLogoutBtn" data-i18n="partner-logout">
+            Déconnexion
+          </button>
         </div>
       </div>
     </header>
@@ -74,7 +74,7 @@
           <div class="hero-visual" aria-hidden="true">
             <model-viewer
               id="planet-3d"
-              src="./smol.glb"
+              src="assets/media/models/low_poly_planet_earth.glb"
               camera-controls
               auto-rotate
               shadow-intensity="1"
@@ -106,7 +106,7 @@
             </ul>
             <div class="product-footer">
               <span class="product-price" data-i18n="shop-pack-solo-price">39&nbsp;&euro;</span>
-              <a href="contact.html" class="btn btn-outline" data-i18n="shop-pack-cta">Je commande</a>
+              <a href="pages/contact.html" class="btn btn-outline" data-i18n="shop-pack-cta">Je commande</a>
             </div>
           </article>
           <article class="product-card product-card--highlight">
@@ -122,7 +122,7 @@
             </ul>
             <div class="product-footer">
               <span class="product-price" data-i18n="shop-pack-duo-price">69&nbsp;&euro;</span>
-              <a href="contact.html" class="btn btn-primary" data-i18n="shop-pack-cta">Je commande</a>
+              <a href="pages/contact.html" class="btn btn-primary" data-i18n="shop-pack-cta">Je commande</a>
             </div>
           </article>
           <article class="product-card">
@@ -137,7 +137,7 @@
             </ul>
             <div class="product-footer">
               <span class="product-price" data-i18n="shop-pack-school-price">159&nbsp;&euro;</span>
-              <a href="contact.html" class="btn btn-outline" data-i18n="shop-pack-cta">Je commande</a>
+              <a href="pages/contact.html" class="btn btn-outline" data-i18n="shop-pack-cta">Je commande</a>
             </div>
           </article>
         </div>
@@ -294,7 +294,7 @@
     <footer class="page-footer">
       <span>&copy; 2025 ECOLUD - Prototype &eacute;ducatif &eacute;cologique</span>
       <div class="footer-links">
-        <a href="contact.html" data-i18n="footer-contact">Nous contacter</a>
+        <a href="pages/contact.html" data-i18n="footer-contact">Nous contacter</a>
         <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialit&eacute;</a>
       </div>
     </footer>
@@ -361,123 +361,8 @@
         </p>
       </div>
     </div>
-
-    <script src="app.js" defer></script>
-    <script src="script.js" defer></script>
-    <script type="module">
-      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js';
-      import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/loaders/GLTFLoader.js';
-
-      const container = document.getElementById('planet-3d');
-      if (!container) throw new Error('Planet container not found');
-
-      const desiredHeight = 520;
-      const resolveDimensions = () => {
-        const width = container.clientWidth || window.innerWidth;
-        const height = container.clientHeight || desiredHeight;
-        return { width, height };
-      };
-      const { width: initialWidth, height: initialHeight } = resolveDimensions();
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(
-        50,
-        initialWidth / initialHeight,
-        0.1,
-        1000
-      );
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(initialWidth, initialHeight);
-      renderer.outputColorSpace = THREE.SRGBColorSpace;
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.setClearColor(0x000000, 0);
-      container.appendChild(renderer.domElement);
-
-      const ambientLight = new THREE.AmbientLight(0x99ffdd, 1.25);
-      scene.add(ambientLight);
-
-      const directionalLight = new THREE.DirectionalLight(0xb3e5fc, 1.1);
-      directionalLight.position.set(1.5, 1.5, 1);
-      scene.add(directionalLight);
-
-      const secondaryLight = new THREE.PointLight(0x00c9a7, 0.9, 10);
-      secondaryLight.position.set(-2, 0.5, 2.5);
-      scene.add(secondaryLight);
-
-      const rimLight = new THREE.SpotLight(0xffffff, 0.4, 12, Math.PI / 5, 0.4, 1);
-      rimLight.position.set(0, 3, -3);
-      scene.add(rimLight);
-
-      const loader = new GLTFLoader();
-      loader.load(
-        './smol.glb',
-        (gltf) => {
-          const planet = gltf.scene;
-          planet.traverse((child) => {
-            if (child.isMesh) {
-              child.castShadow = true;
-              child.receiveShadow = true;
-              if (child.material && 'emissive' in child.material) {
-                child.material.emissive.multiplyScalar(0.15);
-              }
-            }
-          });
-
-          const box = new THREE.Box3().setFromObject(planet);
-          const center = box.getCenter(new THREE.Vector3());
-          const size = box.getSize(new THREE.Vector3()).length();
-
-          planet.position.sub(center);
-          planet.position.y -= 0.2;
-          planet.scale.setScalar(1.4);
-          scene.add(planet);
-
-          const distance = size / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
-          camera.position.set(0, size * 0.1, distance * 0.95);
-          camera.lookAt(0, 0, 0);
-
-          const clock = new THREE.Clock();
-
-          function animate() {
-            requestAnimationFrame(animate);
-            const delta = clock.getDelta();
-            planet.rotation.y += 0.4 * delta;
-            renderer.render(scene, camera);
-          }
-
-          animate();
-        },
-        undefined,
-        () => {
-          const fallback = document.createElement('p');
-          fallback.className = 'hero-subtitle';
-          fallback.textContent = 'La plan&egrave;te se pr&eacute;pare... Revenez dans un instant !';
-          container.appendChild(fallback);
-        }
-      );
-
-      window.addEventListener('resize', () => {
-        const { width: newWidth, height: newHeight } = resolveDimensions();
-        camera.aspect = newWidth / newHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(newWidth, newHeight);
-      });
-
-      const ambience = document.getElementById('planet-audio');
-      const handleEnter = () => {
-        if (!ambience) return;
-        ambience.play().catch(() => {});
-      };
-      const handleLeave = () => {
-        if (!ambience) return;
-        ambience.pause();
-        ambience.currentTime = 0;
-      };
-
-      container.addEventListener('mouseenter', handleEnter);
-      container.addEventListener('mouseleave', handleLeave);
-      container.addEventListener('focusin', handleEnter);
-      container.addEventListener('focusout', handleLeave);
-    </script>
+    <script src="assets/js/auth.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
   </body>
 </html>

@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECOLUD - Jeu &eacute;ducatif</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body class="home">
+    <header class="home-header">
+      <div id="animated-bg"></div>
+
+      <div class="player-info">
+        <img id="avatarDisplay" src="" alt="Avatar du joueur" class="avatar-small" />
+        <span id="playerDisplay"></span>
+      </div>
+      <button id="logout" class="pill-button small">Changer de profil</button>
+    </header>
+
+    <main class="fade">
+      <section class="game-container">
+        <div class="game-box">
+          <h1 class="game-title">&#x1F331; ECOLUD</h1>
+          <p id="gameStatus">Pr&ecirc;t pour ton aventure &eacute;cologique&nbsp;?</p>
+
+          <div class="game-buttons">
+            <button class="eco-button green" id="playLive">Jouer</button>
+            <button class="eco-button yellow" id="playFriends">Avec mes amis</button>
+            <button class="eco-button blue" id="chooseAdventure">Choisir ton aventure</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="adventureSection" class="adventure hidden" aria-hidden="true">
+        <h2>Choisis ton aventure &eacute;cologique</h2>
+        <div class="card-grid">
+          <div
+            class="puzzle-card"
+            role="button"
+            tabindex="0"
+            data-puzzle-id="forest"
+            data-title="For&ecirc;t"
+            data-image="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+          >
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="For&ecirc;t verdoyante" />
+            <h3>For&ecirc;t</h3>
+          </div>
+          <div
+            class="puzzle-card"
+            role="button"
+            tabindex="0"
+            data-puzzle-id="ocean"
+            data-title="Oc&eacute;an"
+            data-image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+          >
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Oc&eacute;an turquoise" />
+            <h3>Oc&eacute;an</h3>
+          </div>
+          <div
+            class="puzzle-card"
+            role="button"
+            tabindex="0"
+            data-puzzle-id="city"
+            data-title="Ville durable"
+            data-image="https://images.unsplash.com/photo-1489515217757-5fd1be406fef"
+          >
+            <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef" alt="Ville durable et verte" />
+            <h3>Ville durable</h3>
+          </div>
+          <div
+            class="puzzle-card"
+            role="button"
+            tabindex="0"
+            data-puzzle-id="recycle"
+            data-title="Recyclage"
+            data-image="https://images.unsplash.com/photo-1528323273322-d81458248d40"
+          >
+            <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40" alt="Centre de recyclage" />
+            <h3>Recyclage</h3>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>&copy; 2025 ECOLUD - Prototype &eacute;ducatif &eacute;cologique</span>
+      <div class="footer-links">
+        <a href="#" data-privacy-trigger>Politique de confidentialit&eacute;</a>
+      </div>
+    </footer>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
+        <h1>Politique de confidentialit&eacute;</h1>
+        <p><strong>Derni&egrave;re mise &agrave; jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype &eacute;ducatif &eacute;cologique, joignable &agrave;
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Donn&eacute;es collect&eacute;es</h2>
+        <ul>
+          <li>Nom, pr&eacute;nom et avatar s&eacute;lectionn&eacute; par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d’inscription.</li>
+          <li>Donn&eacute;es d’interaction&nbsp;: progression, pr&eacute;f&eacute;rences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalit&eacute;s du traitement</h2>
+        <ul>
+          <li>Fournir une exp&eacute;rience ludique et &eacute;ducative autour de l’&eacute;cologie.</li>
+          <li>G&eacute;rer les missions collaboratives, classements et statistiques.</li>
+          <li>R&eacute;pondre aux demandes de contact et assurer le suivi p&eacute;dagogique.</li>
+          <li>Am&eacute;liorer le contenu et l’ergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases l&eacute;gales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l'ex&eacute;cution d'une mission d'int&eacute;r&ecirc;t
+          &eacute;ducatif et le respect d'obligations l&eacute;gales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les donn&eacute;es sont h&eacute;berg&eacute;es en Union europ&eacute;enne. Aucune transmission commerciale n'est r&eacute;alis&eacute;e.
+          Des prestataires techniques agr&eacute;&eacute;s peuvent y acc&eacute;der pour la maintenance du service.
+        </p>
+
+        <h2>6. Dur&eacute;e de conservation</h2>
+        <p>
+          Les donn&eacute;es sont conserv&eacute;es uniquement pendant la dur&eacute;e de l’inscription active ou des missions
+          &eacute;ducatives en cours.
+        </p>
+
+        <h2>7. Droits de l’utilisateur</h2>
+        <p>
+          L’utilisateur peut &agrave; tout moment demander la suppression ou la rectification de ses donn&eacute;es via l’adresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. S&eacute;curit&eacute;</h2>
+        <p>Les donn&eacute;es sont prot&eacute;g&eacute;es par chiffrement SSL et sauvegardes s&eacute;curis&eacute;es.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative &agrave; cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Compagnon flottant -->
+    <div id="floating-avatar" class="hidden">
+      <img id="avatarCompanion" src="" alt="Mascotte flottante" />
+    </div>
+
+    <script src="app.js" defer></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>

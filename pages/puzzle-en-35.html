@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECOLUD &mdash; Protect the Oceans (35 pieces)</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/game.css" />
+    <link rel="stylesheet" href="../assets/css/puzzle-help.css" />
+    <link rel="stylesheet" href="../assets/css/puzzle-help.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .page-prototype main {
+        padding-top: 88px;
+        display: grid;
+        gap: 3.4rem;
+      }
+      .page-prototype .prototype-hero {
+        padding: 4rem 6vw 0;
+        display: grid;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .page-prototype .prototype-hero p {
+        margin: 0 auto;
+        max-width: 640px;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+      .page-prototype .prototype-meta {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+      .page-prototype .prototype-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .page-prototype .prototype-embed {
+        padding: 0 6vw 4rem;
+        display: grid;
+        gap: 1.4rem;
+        justify-items: center;
+      }
+      .page-prototype .embed-card {
+        width: min(100%, 960px);
+        aspect-ratio: 4 / 3;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+        background: rgba(255, 255, 255, 0.92);
+        display: flex;
+        align-items: stretch;
+      }
+      .page-prototype iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #fff;
+      }
+      .page-prototype .prototype-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+      }@media (max-width: 768px) {
+        .page-prototype .prototype-meta {
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-prototype page-puzzle-a">
+    <header class="site-header" id="siteHeader">
+      <a href="../index.html" class="site-logo" aria-label="ECOLUD accueil">
+        <img src="../assets/images/logo/ecolud.png" alt="ECOLUD" />
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="../index.html#top" data-i18n="nav-home">Accueil</a>
+        <a href="../index.html#shop" data-i18n="nav-shop">Boutique</a>
+        <a href="game.html" data-i18n="nav-play">Jouer</a>
+        <!-- <a href="../index.html#experience" data-i18n="nav-experience">Exp´+¢rience</a> -->
+        <a href="login.html" data-i18n="nav-partner" id="navPartnerLink">Partenaire</a>
+        <a href="contact.html" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="nav-session" id="navSession">
+          <div class="player-badge user-info hidden" id="navPlayerBadge" aria-live="polite">
+            <img id="navPlayerAvatar" src="" alt="Avatar du joueur" />
+            <span id="navPlayerName"></span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-ghost nav-change hidden"
+            id="navChangeProfile"
+            data-change-profile
+            data-profile-target="pages/choose.html"
+            data-profile-mode="reset"
+            data-i18n="change-profile"
+          >
+            Changer de profil
+          </button>
+        </div>
+        <div class="partner-actions hidden" id="partnerActions">
+          <a href="prototypes.html" class="btn btn-ghost" id="partnerSpaceLink" data-i18n="partner-space">
+            Mon espace
+          </a>
+          <button type="button" class="btn btn-ghost" id="partnerLogoutBtn" data-i18n="partner-logout">
+            D´+¢connexion
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main data-i18n-container>
+      <section class="prototype-hero">
+        <h1>Protect the Oceans</h1>
+        <p>
+          Protect the oceans: plastic endangers marine life. This prototype, created with Graine de Plan&egrave;te, invites you to rebuild the scene and adopt anti-plastic habits while minimizing the impact on marine wildlife to support the association&rsquo;s workshops.
+        </p>
+        <div class="prototype-meta">
+          <span><strong>Pieces:</strong> 35</span>
+          <span><strong>Version:</strong> 1.0</span>
+          <span><strong>Last update:</strong> November 2025</span>
+        </div>
+      </section>
+      <div class="puzzle-helpbar" role="complementary" aria-label="Puzzle restart helper">
+        <div>
+          <strong>Reprendre à zéro&nbsp;?</strong>
+          <span class="puzzle-helpbar-tip">Astuce : en navigation privée, le puzzle démarre souvent à zéro.</span>
+        </div>
+        <div class="puzzle-helpbar-actions">
+          <button type="button" class="btn btn-ghost" id="puzzleHelpGuideBtn">Guide “Recommencer”</button>
+          <a class="btn btn-secondary" id="puzzleOpenNewTab" target="_blank" rel="noopener">Ouvrir dans un nouvel onglet</a>
+        </div>
+      </div>
+
+      <section class="prototype-embed">
+        <div class="embed-card glass-card">
+          <iframe
+            data-puzzle-src="https://www.jigsawplanet.com/?rc=play&amp;pid=0a3a29830435&amp;view=iframe&amp;bgcolor=0x429a73"
+            src="about:blank"
+            sandbox="allow-scripts allow-forms allow-popups allow-top-navigation-by-user-activation allow-same-origin"
+            title="Protect the Oceans &mdash; 35 pieces"
+            allowfullscreen
+          ></iframe>
+          <div class="puzzle-guide-overlay" id="puzzleGuide" aria-hidden="true">
+            <div class="puzzle-guide-halo" aria-hidden="true"></div>
+            <div class="puzzle-guide-bubble" role="dialog" aria-label="Guide pour relancer le puzzle">
+              <p class="puzzle-guide-steps" data-device="desktop">
+                Étape&nbsp;1&nbsp;—&nbsp;Cliquer sur «&nbsp;<span class="guide-kebab" aria-hidden="true">?</span>&nbsp;» en bas à gauche<br />
+                Étape&nbsp;2&nbsp;—&nbsp;Choisir «&nbsp;Recommencer&nbsp;»
+              </p>
+              <p class="puzzle-guide-steps" data-device="mobile">
+                Étape&nbsp;1&nbsp;—&nbsp;Appuyer sur «&nbsp;<span class="guide-kebab" aria-hidden="true">?</span>&nbsp;» en bas à gauche<br />
+                Étape&nbsp;2&nbsp;—&nbsp;Choisir «&nbsp;Recommencer&nbsp;»
+              </p>
+              <button type="button" class="btn btn-primary" id="puzzleGuideClose">Fermer</button>
+            </div>
+          </div>
+        </div>
+        <div class="prototype-actions">
+          <a class="btn btn-secondary" href="prototypes.html">Back to prototypes</a>
+          <a class="btn btn-ghost" href="https://www.jigsawplanet.com/?rc=play&amp;pid=0a3a29830435" target="_blank" rel="noopener">
+            Open on JigsawPlanet
+          </a>
+        </div>
+      </section>
+    </main>
+    </div>
+
+    <footer class="page-footer">
+      <span>&copy; 2025 ECOLUD ´+¢ Prototype ´+¢ducatif ´+¢cologique</span>
+      <div class="footer-links">
+        <a href="../index.html#missions" data-i18n="footer-missions">Voir les missions</a>
+        <a href="#" data-privacy-trigger data-i18n="footer-privacy">Politique de confidentialit´+¢</a>
+      </div>
+    </footer>
+
+    <div id="floating-avatar" class="hidden" aria-hidden="true">
+      <img id="avatarCompanion" src="../assets/images/avatars/turtle.png" alt="Mascotte flottante" />
+    </div>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document">
+        <button type="button" id="close-privacy" aria-label="Fermer">&times;</button>
+        <h1>Politique de confidentialit´+¢</h1>
+        <p><strong>Derni´+¢re mise ´+¢ jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype ´+¢ducatif ´+¢cologique, joignable ´+¢
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Donn´+¢es collect´+¢es</h2>
+        <ul>
+          <li>Nom, pr´+¢nom et avatar s´+¢lectionn´+¢ par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou d´+¢inscription.</li>
+          <li>Donn´+¢es d´+¢interaction&nbsp;: progression, pr´+¢f´+¢rences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalit´+¢s du traitement</h2>
+        <ul>
+          <li>Fournir une exp´+¢rience ludique et ´+¢ducative autour de l´+¢´+¢cologie.</li>
+          <li>G´+¢rer les missions collaboratives, classements et statistiques.</li>
+          <li>R´+¢pondre aux demandes de contact et assurer le suivi p´+¢dagogique.</li>
+          <li>Am´+¢liorer le contenu et l´+¢ergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases l´+¢gales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l´+¢ex´+¢cution d'une mission d´+¢int´+¢r´+¢t
+          ´+¢ducatif et le respect d'obligations l´+¢gales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les donn´+¢es sont h´+¢berg´+¢es en Union europ´+¢enne. Aucune transmission commerciale n'est r´+¢alis´+¢e.
+          Des prestataires techniques agr´+¢´+¢s peuvent y acc´+¢der pour la maintenance du service.
+        </p>
+
+        <h2>6. Dur´+¢e de conservation</h2>
+        <p>
+          Les donn´+¢es sont conserv´+¢es uniquement pendant la dur´+¢e de l´+¢inscription active ou des missions
+          ´+¢ducatives en cours.
+        </p>
+
+        <h2>7. Droits de l´+¢utilisateur</h2>
+        <p>
+          L´+¢utilisateur peut ´+¢ tout moment demander la suppression ou la rectification de ses donn´+¢es via l´+¢adresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. S´+¢curit´+¢</h2>
+        <p>Les donn´+¢es sont prot´+¢g´+¢es par chiffrement SSL et sauvegardes s´+¢curis´+¢es.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative ´+¢ cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/app.js" defer></script>
+    <script src="../assets/js/puzzle-help.js" defer></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+

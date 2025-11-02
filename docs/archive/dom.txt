@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOLUD - Choisis ton profil</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  </head>
+  <body class="page-choose loaded">
+    <header class="site-header compact">
+      <a href="index.html" class="site-logo">
+        <span aria-hidden="true">­ƒî▒</span>
+        ECOLUD
+      </a>
+      <nav class="site-nav">
+        <a href="index.html" data-i18n="nav-home">Accueil</a>
+        <a href="index.html#about" data-i18n="nav-about">├Ç propos</a>
+        <a href="index.html#missions" data-i18n="nav-missions">Missions</a>
+        <a href="index.html#leaders" data-i18n="nav-leaderboard">Classement</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="btn btn-ghost" data-back-home="">
+          <span data-i18n="nav-back">Retour accueil</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="choose-container" data-i18n-container="">
+      <section class="choose-card glass-card">
+        <h1 data-i18n="profile-title">Entre ton pr├®nom</h1>
+        <p class="choose-lead" data-i18n="profile-help">Ton pr├®nom s'affichera dans le jeu et te permettra de sauvegarder ta progression.</p>
+
+        <div class="avatar-selection" role="list">
+          <div class="avatar" role="listitem" tabindex="0" data-avatar="turtle.png">
+            <img src="turtle.png" alt="Tiko la Tortue">
+          </div>
+          <div class="avatar" role="listitem" tabindex="0" data-avatar="squirrel.png">
+            <img src="squirrel.png" alt="Noisette l'├ëcureuil">
+          </div>
+          <div class="avatar" role="listitem" tabindex="0" data-avatar="bird.png">
+            <img src="bird.png" alt="Colibri">
+          </div>
+          <div class="avatar" role="listitem" tabindex="0" data-avatar="drop.png">
+            <img src="drop.png" alt="Goutte d'eau">
+          </div>
+          <div class="avatar" role="listitem" tabindex="0" data-avatar="sun.png">
+            <img src="sun.png" alt="Soleil">
+          </div>
+        </div>
+
+        <form id="profile-form" class="profile-form" novalidate="">
+          <label for="player-name" data-i18n="profile-title">Entre ton pr├®nom</label>
+          <input type="text" id="player-name" name="player-name" required="" minlength="2" maxlength="16" placeholder="Ton pr├®nom" data-i18n-placeholder="name-placeholder">
+          <p class="form-hint" data-i18n="profile-help">Ton pr├®nom s'affichera dans le jeu et te permettra de sauvegarder ta progression.</p>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" data-i18n="start-button">D├®marrer l'aventure</button>
+            <button type="button" id="continue-profile" class="btn btn-ghost hidden" data-i18n="continue-profile">Continuer avec ton profil</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <div id="nameModal" class="modal hidden" role="alertdialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <h2 data-i18n="name-modal-title">ÔÜá´©Å Oups !</h2>
+        <p data-i18n="name-modal-text">N'oublie pas d'indiquer ton pr├®nom.</p>
+        <button type="button" id="closeNameModal" class="btn btn-primary" data-i18n="name-modal-button">D'accord !</button>
+      </div>
+    </div>
+
+    <div id="avatarModal" class="modal hidden" role="alertdialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <h2 data-i18n="avatar-modal-title">Choisis ton avatar</h2>
+        <p data-i18n="avatar-modal-text">S├®lectionne un compagnon pour continuer l'aventure.</p>
+        <button type="button" id="closeAvatarModal" class="btn btn-primary" data-i18n="avatar-modal-button">J'y vais !</button>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span>┬® 2025 ECOLUD - Prototype ├®ducatif ├®cologique</span>
+      <div class="footer-links">
+        <a href="#" data-privacy-trigger="" aria-haspopup="dialog" aria-controls="privacy-modal">Politique de confidentialit├®</a>
+      </div>
+    </footer>
+
+    <div class="privacy-modal modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content" role="document" tabindex="-1">
+        <button type="button" id="close-privacy" aria-label="Fermer">├ù</button>
+        <h1>Politique de confidentialit├®</h1>
+        <p><strong>Derni├¿re mise ├á jour&nbsp;:</strong> 20 octobre 2025</p>
+
+        <h2>1. Responsable du traitement</h2>
+        <p>
+          <strong>ECOLUD</strong>, prototype ├®ducatif ├®cologique, joignable ├á
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>2. Donn├®es collect├®es</h2>
+        <ul>
+          <li>Nom, pr├®nom et avatar s├®lectionn├® par le joueur.</li>
+          <li>Adresse e-mail en cas de contact ou dÔÇÖinscription.</li>
+          <li>Donn├®es dÔÇÖinteraction&nbsp;: progression, pr├®f├®rences de langue, messages via le formulaire.</li>
+        </ul>
+
+        <h2>3. Finalit├®s du traitement</h2>
+        <ul>
+          <li>Fournir une exp├®rience ludique et ├®ducative autour de lÔÇÖ├®cologie.</li>
+          <li>G├®rer les missions collaboratives, classements et statistiques.</li>
+          <li>R├®pondre aux demandes de contact et assurer le suivi p├®dagogique.</li>
+          <li>Am├®liorer le contenu et lÔÇÖergonomie du site.</li>
+        </ul>
+
+        <h2>4. Bases l├®gales</h2>
+        <p>
+          Les traitements reposent sur le consentement de l'utilisateur, l'ex├®cution d'une mission d'int├®r├¬t
+          ├®ducatif et le respect d'obligations l├®gales.
+        </p>
+
+        <h2>5. Destinataires et transferts</h2>
+        <p>
+          Les donn├®es sont h├®berg├®es en Union europ├®enne. Aucune transmission commerciale n'est r├®alis├®e.
+          Des prestataires techniques agr├®├®s peuvent y acc├®der pour la maintenance du service.
+        </p>
+
+        <h2>6. Dur├®e de conservation</h2>
+        <p>
+          Les donn├®es sont conserv├®es uniquement pendant la dur├®e de lÔÇÖinscription active ou des missions
+          ├®ducatives en cours.
+        </p>
+
+        <h2>7. Droits de lÔÇÖutilisateur</h2>
+        <p>
+          LÔÇÖutilisateur peut ├á tout moment demander la suppression ou la rectification de ses donn├®es via lÔÇÖadresse
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>.
+        </p>
+
+        <h2>8. S├®curit├®</h2>
+        <p>Les donn├®es sont prot├®g├®es par chiffrement SSL et sauvegardes s├®curis├®es.</p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative ├á cette politique&nbsp;:
+          <a href="mailto:contact@ecolud.org">contact@ecolud.org</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="app.js" defer=""></script>
+  
+
+</body></html>
