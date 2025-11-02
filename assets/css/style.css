@@ -14,6 +14,8 @@
   --shadow-soft: 0 26px 52px rgba(0, 83, 70, 0.16);
   --radius-lg: 32px;
   --radius-md: 22px;
+  --container-max: 1200px;
+  --container-pad: clamp(16px, 4vw, 32px);
   font-family: 'Poppins', sans-serif;
 }
 
@@ -68,6 +70,81 @@ img {
 
 .highlight {
   color: #00c9a7;
+}
+
+.content-section {
+  padding-block: clamp(2.5rem, 8vw, 4.5rem);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(12px, 2.5vw, 24px);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(12px, 2.5vw, 24px);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(12px, 2.5vw, 24px);
+}
+
+body,
+p,
+li {
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 clamp(0.75rem, 1.5vw, 1.4rem);
+}
+
+h1 {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+h4 {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe {
+  max-width: 100%;
+  border: 0;
+  display: block;
 }
 
 #hero {
@@ -373,6 +450,39 @@ button:not(.btn):hover {
   justify-self: center;
 }
 
+.nav-toggle {
+  grid-area: toggle;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 24px rgba(17, 115, 115, 0.12);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.25s ease;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--primary-dark);
+  outline-offset: 4px;
+}
+
+.nav-toggle img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+}
+
+.site-header.nav-open .nav-toggle img {
+  transform: rotate(90deg);
+}
+
 .site-nav a {
   position: relative;
   display: inline-flex;
@@ -385,6 +495,18 @@ button:not(.btn):hover {
   color: rgba(18, 59, 61, 0.72);
   transition: all 0.3s ease;
   white-space: nowrap;
+}
+
+ .site-nav #partnerActions {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.6rem, 2vw, 1rem);
+  margin-left: auto;
+}
+
+.site-nav #partnerActions .btn {
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
 }
 
 .site-nav a::after {
@@ -731,17 +853,18 @@ button:not(.btn):hover {
 }
 
 .content-section h2 {
-  font-size: 2.1rem;
-  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0 0 clamp(1.2rem, 3vw, 2rem);
 }
 
 .section-intro {
-  margin: 0;
+  margin: 0 0 clamp(1.2rem, 3vw, 1.8rem);
   max-width: 680px;
   color: var(--text-muted);
   font-size: 1.05rem;
   line-height: 1.8;
 }
+
 
 .content-columns {
   display: grid;
@@ -1878,3 +2001,157 @@ button:not(.btn):hover {
 .partner-actions .btn.btn-ghost {
   color: rgba(18, 59, 61, 0.72);
 }
+
+@media (max-width: 480px) {
+  body {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+  }
+
+  .site-header {
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      "logo toggle"
+      "actions actions"
+      "nav nav";
+    padding: clamp(0.75rem, 2vw, 1rem) var(--container-pad);
+    row-gap: 0.75rem;
+    align-items: center;
+  }
+
+  .nav-toggle {
+    display: flex;
+    justify-self: end;
+  }
+
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+    padding: clamp(0.9rem, 6vw, 1.4rem);
+    width: 100%;
+    z-index: 20;
+  }
+
+  .site-header.nav-open .site-nav {
+    display: flex;
+  }
+
+  .site-nav a {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.75rem 1rem;
+  }
+
+  .site-nav #partnerActions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 0;
+    gap: 0.6rem;
+  }
+
+  .site-nav #partnerActions .btn {
+    width: 100%;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .hero-layout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .experience-steps,
+  .product-grid,
+  .testimonials-grid,
+  .included-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 6vw, 1.8rem);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .site-header {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "logo actions"
+      "nav nav";
+    padding-inline: clamp(1rem, 5vw, 2.5rem);
+  }
+
+  .site-nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: clamp(0.6rem, 2vw, 1rem);
+  }
+
+  .hero-layout {
+    gap: clamp(2rem, 6vw, 3rem);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+@media (min-width: 1025px) {
+  .site-nav {
+    flex-wrap: nowrap;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+  }
+
+  .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .hero-content {
+    padding-right: clamp(1rem, 4vw, 2.8rem);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --container-max: 1320px;
+  }
+
+  .site-nav a {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
