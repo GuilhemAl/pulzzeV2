@@ -5,12 +5,9 @@
       password: 'planet',
       company: 'Grainedeplanet',
       prototypes: [
-        'puzzle-fr-35',
-        'puzzle-fr-45',
-        'puzzle-en-35',
-        'puzzle-en-45',
-        'puzzle-es-35',
-        'puzzle-es-45',
+        'puzzle-a',
+        'puzzle-b',
+        'puzzle-c',
       ],
     },
   };
